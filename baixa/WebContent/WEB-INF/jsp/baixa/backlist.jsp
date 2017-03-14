@@ -4,66 +4,44 @@
            prefix="decorator"%>
 
 <div class="page-header">
-    <h2>Tratativa da Baixa Ba</h2>
+    <h1>Tratativa de Baixas enviadas - BA</h1>
 </div>
 
-
-
-
-<div class="page-header">
-    <h1>Baixas enviadas - BA</h1>
-</div>
-
+<form action="${linkTo[BaixaController].update}" method="post"  style="width: 50%;"> 
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>Cidade</th>
             <th>Instancia</th>
             <th>Ordem</th>
-            <th>Fechamento 1</th>
-            <th>Fechamento 2</th>
-            <th>Fechamento 3</th>
+            <th>Codigo de Fechamento</th>
             <th>Novo Status</th>
         </tr>
     </thead>
-    <tr><form action="${linkTo[BaixaController].update}" method="post"  style="width: 50%;"> 
-        <input type="hidden" name="m.id" value="${resultado.id}" /> 
-        <td>${resultado.cidade}</td>
-        <td>${resultado.instancia}</td>
-        <td>${resultado.ordem}</td>
-        <td>${resultado.fechamento1}</td>
-        <td>${resultado.fechamento2}</td>
-        <td>${resultado.fechamento3}</td>
-        <td>	<div class="form-group">
-                <div class="form-inline">
+    <tr>
+            <input type="hidden" name="m.id" value="${resultado.id}" /> 
+            <td>${resultado.cidade}</td>
+            <td>${resultado.instancia}</td>
+            <td>${resultado.ordem}</td>
+            <td>${resultado.codigofech}</td>
 
-                    <select class="form-control" name="m.status" id="novostatus">
-                        <c:forEach items="${StatusBaixa}" var="StatusBaixa">
-                            <option <c:if test="${StatusBaixa == resultado.status}">selected </c:if> >${StatusBaixa}</option>
-                        </c:forEach>
-                    </select>
+            <td>	<div class="form-group">
+                    <div class="form-inline">
+
+                        <select class="form-control" name="m.status" id="novostatus">
+                            <c:forEach items="${StatusBaixa}" var="StatusBaixa">
+                                <option <c:if test="${StatusBaixa == resultado.status}">selected </c:if> >${StatusBaixa}</option>
+                            </c:forEach>
+                        </select>
+
+                    </div>
                 </div>
-            </div>
-        </td>
-
-        </tr>         
-        <div class="form-group">
-
-        </div>
-        <td>
-            <button type="submit" class="btn btn-default">Alterar</button>
-        </td>
-
-
-    </form>
+            </td>
+            </tr>         
 </tr>
 </tbody>
 </table>
-
-
-
-
-<button type="button" onclick="history.back(-1)" class="cancelar">Voltar</button>
-
-
+<button type="submit" class="btn btn-default">Alterar</button>
+<button type="button" onclick="history.back(-1)" class="btn btn-default" class="cancelar">Voltar</button>
+</form>
 

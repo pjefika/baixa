@@ -51,6 +51,15 @@ public class BaixaDAO extends AbstractDAO{
             throw new Exception();
         }
     }
+    @Transactional
+    public void editar1(BaixaTt baixa) throws Exception {
+        try {
+            this.entityManager.merge(baixa);
+        } catch (Exception e) {
+            throw new Exception();
+        }
+    }
+    
 
     @Transactional
     public void excluir(BaixaBa baixa) throws Exception {
@@ -115,10 +124,10 @@ public class BaixaDAO extends AbstractDAO{
         }
     }
     @Transactional
-    public BaixaTt buscaPorId1(Long Id){
+    public BaixaTt buscaPorId1(Long id){
         try {
             Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.id =:param1" );
-            query.setParameter("param1", Id);
+            query.setParameter("param1", id);
                       
             return (BaixaTt) query.getSingleResult();
         } catch (Exception e) {

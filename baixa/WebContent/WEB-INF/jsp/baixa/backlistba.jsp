@@ -25,9 +25,8 @@
             <tr>
                 <td>${status.instancia}</td>
                 <td>${status.status}</td>
-                <td>
+                <td><a href="${pageContext.request.contextPath}/baixa/backoffice/backlistba/${status.id}"
 
-                    <a href="${pageContext.request.contextPath}/baixa/backoffice/backlistba1/${status.id}"
                        class="btn btn-warning btn-sm"> 
                         <span
                             class="glyphicon glyphicon-pencil" aria-hidden="true">

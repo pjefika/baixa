@@ -30,7 +30,7 @@ public enum StatusBaixa {
 
     }
 
-    public List<StatusBaixa> toList() {
+    public static List<StatusBaixa> toList() {
         List<StatusBaixa> a = new ArrayList<>();
         for (StatusBaixa v : StatusBaixa.values()) {
             a.add(v);

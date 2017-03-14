@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  * @author G0025381
  */
 @Entity
-@Table(name = "SuporteN2_BaixaTT")
+@Table(name = "baixa_BaixaTT")
 public class BaixaTt implements Serializable {
     @Id
     @GeneratedValue
@@ -33,6 +33,9 @@ public class BaixaTt implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar data;
             
+    public BaixaTt(){
+                
+    }
 
      public Long getId() {
         return id;

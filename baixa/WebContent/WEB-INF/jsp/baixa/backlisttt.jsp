@@ -26,12 +26,17 @@
                 <td>${status.ss}</td>
                 <td>${status.status}</td>
                 <td>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                    </div>
+
+                    <a href="${pageContext.request.contextPath}/baixa/backoffice/backlisttt/${status.id}"
+
+                       class="btn btn-warning btn-sm"> 
+                        <span
+                            class="glyphicon glyphicon-pencil" aria-hidden="true">
+                        </span>
+                    </a>
+
                 </td>
+
             </tr>
         </c:forEach>
     </tbody>

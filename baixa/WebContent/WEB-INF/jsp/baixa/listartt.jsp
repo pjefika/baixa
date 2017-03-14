@@ -9,23 +9,23 @@
            prefix="decorator"%>
 
 
-<div class="row">
-    <div class="col-md-6" > 
-        <h1>Baixa de BA</h1>
+
+    <div class="col-md-6">
+        <h1>Baixa de TT</h1>
         <table class="table table-bordered">
             <thead>
-            <form action="<c:url value='/baixa/listastatus/'/>">
+            <form action="<c:url value='/baixa/listastatus1/'/>">
                 <tr>
-                    <th>Instancia</th>
+                    <th>Ordem</th>
                     <th>Status</th>
 
                 </tr>
                 </thead>
                 <tbody>
 
-                    <c:forEach items="${listastatus}" var="status">
+                    <c:forEach items="${listastatus1}" var="status">
 
-                    <td> ${status.instancia} </td>
+                    <td> ${status.ss} </td>
                     <td>${status.status} </td>
                     </tr>
                 </c:forEach>
@@ -34,7 +34,6 @@
 
         </table>
     </div>
-   
 
 </div>
 

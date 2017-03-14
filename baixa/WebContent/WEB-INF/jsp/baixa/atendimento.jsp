@@ -22,11 +22,14 @@
                         <th><a href="${linkTo[BaixaController].addBA()}" class="btn btn-success">BA</a></th>
                         <th><a href="${linkTo[BaixaController].listar()}" class="btn btn-info">Consultar</a></th>
                     </tr>           
-                    <tr>
+                <td> 
+                    
+                <tr>
 
-                        <th><a href="${linkTo[BaixaController].addTT()}" class="btn btn-warning">TT</a></th>
-                        <th><a href="${linkTo[BaixaController].listar()}" class="btn btn-info">Consultar</a></th>
-                    </tr>
+                    <th><a href="${linkTo[BaixaController].addTT()}" class="btn btn-warning">TT</a></th>
+                    <th><a href="${linkTo[BaixaController].listartt()}" class="btn btn-info">Consultar</a></th>
+                </tr>
+                </td>
                 </thead>
                 </table>
             </div>

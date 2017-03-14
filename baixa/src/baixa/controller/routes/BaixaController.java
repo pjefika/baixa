@@ -59,6 +59,10 @@ public class BaixaController extends AbstractCrudController {
     public void backOffice() {
 
     }
+    @Path("/atendimento/")
+    public void atendimento() {
+
+    }
 
     @Path("/baixa/backoffice/backlistba/")
     public void backlistba() {
@@ -163,11 +167,20 @@ public class BaixaController extends AbstractCrudController {
 
     public void listar() {
         listarBA();
+       
+
+    }
+    public void listartt() {
+       
         listarTT();
 
     }
+    
+    
+    
+    
 
-    @Path("baixa/backoffice/backlistba1/{id}")
+    @Path("baixa/backoffice/backlistba/{id}")
     public void backlist(Long id) throws Exception {
         BaixaBa b = baixaDAO.buscaPorId(id);
         b.setStatus(StatusBaixa.ANALISE);
@@ -188,6 +201,32 @@ public class BaixaController extends AbstractCrudController {
         try {
             baixaDAO.editar(tratada1);
             result.redirectTo(BaixaController.class).backlistba();
+        } catch (Exception ex) {
+            Logger.getLogger(BaixaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     @Path("baixa/backoffice/backlisttt/{id}")
+    public void backlisttt(Long id) throws Exception {
+        BaixaTt b = baixaDAO.buscaPorId1(id);
+        b.setStatus(StatusBaixa.ANALISE);
+        baixaDAO.editar(b);
+        result.include("resultado", b);
+        StatusBaixa[] listaBaixa = StatusBaixa.values();
+        result.include("StatusBaixa", listaBaixa);
+
+    }
+
+    public void update2(BaixaTt m) {
+
+        validation.onErrorForwardTo(this).create();
+
+        BaixaTt tratada1 = (BaixaTt) baixaDAO.buscaPorId1(m.getId());
+        tratada1.setStatus(m.getStatus());
+
+        try {
+            baixaDAO.editar(tratada1);
+            result.redirectTo(BaixaController.class).backlisttt();
         } catch (Exception ex) {
             Logger.getLogger(BaixaController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -9,7 +9,7 @@
            prefix="decorator"%>
 
 
-<div class="container" id="form" >
+<div class="container" id="form" class="row">
 
     <div class="page-header">
         <h1>Painel Baixa Off Line</h1>

@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  * @author G0025381
  */
 @Entity
-@Table(name = "SuporteN2_BaixaBa")
+@Table(name = "baixa_BaixaBa")
 public class BaixaBa implements Serializable {
     @Id
     @GeneratedValue
@@ -28,7 +28,7 @@ public class BaixaBa implements Serializable {
     private String instancia;
     private String cidade;
     private String ordem;
-    private String fechamento1 ,fechamento2, fechamento3;
+    private String codigofech;  
     private StatusBaixa status;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar data;
@@ -71,28 +71,14 @@ public class BaixaBa implements Serializable {
         this.ordem = ordem;
     }
 
-    public String getFechamento1() {
-        return fechamento1;
+   
+
+    public String getCodigofech() {
+        return codigofech;
     }
 
-    public void setFechamento1(String fechamento1) {
-        this.fechamento1 = fechamento1;
-    }
-
-    public String getFechamento2() {
-        return fechamento2;
-    }
-
-    public void setFechamento2(String fechamento2) {
-        this.fechamento2 = fechamento2;
-    }
-
-    public String getFechamento3() {
-        return fechamento3;
-    }
-
-    public void setFechamento3(String fechamento3) {
-        this.fechamento3 = fechamento3;
+    public void setCodigofech(String codigofech) {
+        this.codigofech = codigofech;
     }
 
     public StatusBaixa getStatus() {

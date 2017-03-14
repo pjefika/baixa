@@ -21,9 +21,8 @@
                 <th>Cidade</th>
                 <th>Instancia</th>
                 <th>Ordem</th>
-                <th>Fechamento 1</th>
-                <th>Fechamento 2</th>
-                <th>Fechamento 3</th>
+                <th>Codigo de Fechamento</th>
+
             </tr>
         </thead>   
 
@@ -35,25 +34,8 @@
                 <td> <input type="text" class="form-control" name="baixaba.cidade"></></td>
                 <td><input type="text" class="form-control" name="baixaba.instancia"></></td>
                 <td><input type="text" class="form-control" name="baixaba.ordem"></></td>
-                <td><select name="baixaba.fechamento1" class="form-control">            
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>        
-                    </select></td>
-
-                <td><select name="baixaba.fechamento2" class="form-control">
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                    </select></td>
-                <td> <select name="baixaba.fechamento3" class="form-control">
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                    </select></td>
-
-
-                </td>
+                <td><input type="text" class="form-control" name="baixaba.codigofech"></></td>
+                
             </tr>
             </tbody>
     </table>
