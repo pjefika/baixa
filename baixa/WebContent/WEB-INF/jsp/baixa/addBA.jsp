@@ -30,7 +30,6 @@
 
         <form action="<c:url value='/baixa/adicionar/ba/'/>">
             <tr>
-
                 <td> <input type="text" class="form-control" name="baixaba.cidade"></></td>
                 <td><input type="text" class="form-control" name="baixaba.instancia"></></td>
                 <td><input type="text" class="form-control" name="baixaba.ordem"></></td>
@@ -40,8 +39,8 @@
             </tbody>
     </table>
     <center>
-        <button type="submit" class="salvar_blocos">Salvar</button>
-        <button type="button" onclick="history.back(-1)" class="cancelar">Cancelar</button>
+        <button type="submit" class="btn btn-default">Salvar</button>
+        <a href="${linkTo[BaixaController].atendimento()}" class="btn btn-default" role="button">Cancelar</a>
     </center>
 </form>
 

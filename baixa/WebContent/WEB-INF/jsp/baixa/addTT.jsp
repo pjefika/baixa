@@ -8,6 +8,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
            prefix="decorator"%>
 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 
 <div class="container" id="form" >
 
@@ -19,8 +20,8 @@
         <thead>
             <tr>
                 <th>Código da SS</th>
-                <th>Data da Abertura</th>
-                <th>Data do Fechamaneto</th>
+                <th>Data da Fechamaneto</th>
+                <th>Horário do Fechamaneto</th>
                 <th>Código do Fechamento</th>
             </tr>
         </thead>
@@ -28,16 +29,23 @@
         <form action="<c:url value='/baixa/adicionar/tt/'/>">
             <tr>
                 <td> <input type="text" class="form-control" name="baixatt.ss"/></td>
-                <td> <input type="text" class="form-control" name="baixatt.dabertura"/></td>
-                <td><input type="text" class="form-control" name="baixatt.dfechamento"/></td>
+
+                <td>   <div class="input-group date" data-provide="datepicker">
+                        <input type="date" class="form-control" value="today" value="dd/mm/yy"name="baixatt.dabertura">
+
+                    </div>
+
+                    </div></td>
+                <td>   <input type="time" class="form-control" value="today"name="baixatt.dfechamento"></td>
+
                 <td> <input type="text" class="form-control" name="baixatt.codfechamento"/></td>
 
-        </tbody>
-        </table>
+                </tbody>
+                </table>
 
             <center>
-                <button type="submit" class="salvar_blocos">Salvar</button>
-                <button type="button" onclick="history.back(-1)" class="cancelar">Cancelar</button>
+                <button type="submit" class="btn btn-default">Salvar</button>
+                <a href="${linkTo[BaixaController].atendimento()}" class="btn btn-default" role="button">Cancelar</a>
             </center>
         </form>
 

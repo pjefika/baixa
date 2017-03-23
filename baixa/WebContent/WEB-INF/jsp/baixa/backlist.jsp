@@ -1,3 +1,8 @@
+<%-- 
+    Document   : create
+    Created on : 20/02/2017, 15:59:44
+    Author     : G0025381
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
@@ -44,4 +49,3 @@
 <button type="submit" class="btn btn-default">Alterar</button>
 <button type="button" onclick="history.back(-1)" class="btn btn-default" class="cancelar">Voltar</button>
 </form>
-

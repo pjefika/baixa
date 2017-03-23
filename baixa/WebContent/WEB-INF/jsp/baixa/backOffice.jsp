@@ -20,7 +20,7 @@
             <div class="col-md-8">
                 <a href="${linkTo[BaixaController].backlistba()}" class="btn btn-default">BA</a>
                 <a href="${linkTo[BaixaController].addTT()}" class="btn btn-default">TT</a>
-                <a href="${linkTo[BaixaController].listar()}" class="btn btn-default">Consultar</a>
+<!--                <a href="${linkTo[BaixaController].listar()}" class="btn btn-default">Consultar</a>-->
             </div>
         </div>
     </div>

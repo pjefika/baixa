@@ -32,15 +32,10 @@
                             class="glyphicon glyphicon-pencil" aria-hidden="true">
                         </span>
                     </a>
-                    
                 </td>
             </tr>
         </c:forEach>
-
-
     </tbody>
 </table>
-<center>
-    <button type="button" onclick="history.back(-1)" class="cancelar">Voltar</button>
-</center>
+
 

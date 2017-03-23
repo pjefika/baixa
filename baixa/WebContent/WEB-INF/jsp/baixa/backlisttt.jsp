@@ -42,6 +42,3 @@
     </tbody>
 </table>
 
-<center>
-    <button type="button" onclick="history.back(-1)" class="cancelar">Voltar</button>
-</center>

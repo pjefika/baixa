@@ -9,7 +9,7 @@
            prefix="decorator"%>
 
 
-<div class="row">
+
     <div class="col-md-6" > 
         <h1>Baixa de BA</h1>
         <table class="table table-bordered">
@@ -39,5 +39,5 @@
 </div>
 
 <center>
-    <button type="button" onclick="history.back(-1)" class="cancelar">Voltar</button>
+    <a href="${linkTo[BaixaController].atendimento()}" class="btn btn-default" role="button">Cancelar</a>
 </center>

@@ -12,6 +12,7 @@ import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -32,20 +33,17 @@ public class BaixaBa implements Serializable {
     private StatusBaixa status;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar data;
-              
+    @Lob
+    private String comentario;
+    private Calendar DateTimeFormat;
 
-    public BaixaBa(){
-                
-    }
-          
-                    
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
-   }
+    }
 
     public String getInstancia() {
         return instancia;
@@ -89,7 +87,6 @@ public class BaixaBa implements Serializable {
         this.status = status;
     }
 
-
     public Calendar getData() {
         return data;
     }
@@ -97,7 +94,14 @@ public class BaixaBa implements Serializable {
     public void setData(Calendar data) {
         this.data = data;
     }
-    
-    
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
     
 }

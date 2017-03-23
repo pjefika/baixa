@@ -18,7 +18,6 @@ import baixa.model.entities.BaixaBa;
 import baixa.model.entities.BaixaTt;
 import baixa.model.entities.StatusBaixa;
 
-
 /**
  *
  * @author G0025381
@@ -36,6 +35,7 @@ public class BaixaController extends AbstractCrudController {
     public void create() {
 
     }
+
     @Path("/buscaba/")
     public void buscaba() {
 
@@ -45,6 +45,7 @@ public class BaixaController extends AbstractCrudController {
     public void addBA() {
 
     }
+
     @Path("/index/")
     public void index() {
 
@@ -64,20 +65,27 @@ public class BaixaController extends AbstractCrudController {
 
     }
 
+    }
+
+   
     @Path("/baixa/backoffice/backlistba/")
     public void backlistba() {
         this.listarBA();
         this.status();
     }
-    
+
     @Path("/baixa/backoffice/backlisttt/")
     public void backlisttt() {
         this.listarTT();
         this.status();
     }
+    @Path("baixa/relaroio/")
+    public void relatorio(){
+        
+    }
 
     @Path("/baixa/adicionar/ba/")
-    public void create(BaixaBa baixaba) {
+    public void adicionarBA(BaixaBa baixaba) {
         try {
             //this.result.include("mensagem", "Cadastro Baixa Off Line");
 
@@ -88,7 +96,8 @@ public class BaixaController extends AbstractCrudController {
             baixaba.setStatus(StatusBaixa.ENVIADO);
 
             this.baixaDAO.cadastrar(baixaba);
-            result.include("mensagem", "Sucesso no cadastro");
+            this.result.redirectTo(BaixaController.class).atendimento();
+            //result.include("mensagem", "Sucesso no cadastro");
         } catch (Exception ex) {
             //result.include("mensagemFalha", "Falha ao cadastrar " + baixa.getInstancia() + "!");
             result.include("mensagemFalha", ex.getMessage());
@@ -96,7 +105,7 @@ public class BaixaController extends AbstractCrudController {
     }
 
     @Path("/baixa/adicionar/tt/")
-    public void create(BaixaTt baixatt) {
+    public void adicionarTT(BaixaTt baixatt) {
         try {
             //this.result.include("mensagem", "Cadastro Baixa Off Line");
 
@@ -107,7 +116,8 @@ public class BaixaController extends AbstractCrudController {
             baixatt.setStatus(StatusBaixa.ENVIADO);
 
             this.baixaDAO.cadastrar(baixatt);
-            result.include("mensagem", "Sucesso no cadastro");
+            this.result.redirectTo(BaixaController.class).atendimento();
+            //result.include("mensagem", "Sucesso no cadastro");
         } catch (Exception ex) {
             //result.include("mensagemFalha", "Falha ao cadastrar " + baixa.getInstancia() + "!");
             result.include("mensagemFalha", ex.getMessage());
@@ -136,7 +146,7 @@ public class BaixaController extends AbstractCrudController {
 
         } catch (Exception e) {
 
-            List<BaixaBa> l = new ArrayList<>();
+            List<BaixaTt> l = new ArrayList<>();
 
         }
 
@@ -165,6 +175,7 @@ public class BaixaController extends AbstractCrudController {
         result.include("todosStatus", StatusBaixa.values());
     }
 
+    @Path("/baixa/listarBA/")
     public void listar() {
         listarBA();
        
@@ -192,12 +203,10 @@ public class BaixaController extends AbstractCrudController {
     }
 
     public void update(BaixaBa m) {
-
         validation.onErrorForwardTo(this).create();
-
-        BaixaBa tratada1 = (BaixaBa) baixaDAO.buscaPorId(m.getId());
+        BaixaBa tratada1 = baixaDAO.buscaPorId(m.getId());
+        tratada1.setComentario(m.getComentario());
         tratada1.setStatus(m.getStatus());
-
         try {
             baixaDAO.editar(tratada1);
             result.redirectTo(BaixaController.class).backlistba();
@@ -231,5 +240,33 @@ public class BaixaController extends AbstractCrudController {
             Logger.getLogger(BaixaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Path("baixa/backoffice/backlisttt/{id}")
+    public void backlisttt(Long id) throws Exception {
+        BaixaTt b = baixaDAO.buscaPorId1(id);
+        b.setStatus(StatusBaixa.ANALISE);
+        baixaDAO.editar(b);
+        result.include("resultado", b);
+        StatusBaixa[] listaBaixa = StatusBaixa.values();
+        result.include("StatusBaixa", listaBaixa);
+
+    }
+
+    public void update2(BaixaTt m) {
+
+        validation.onErrorForwardTo(this).create();
+
+        BaixaTt tratada1 = baixaDAO.buscaPorId1(m.getId());
+        tratada1.setStatus(m.getStatus());
+
+        try {
+            baixaDAO.editar(tratada1);
+            result.redirectTo(BaixaController.class).backlisttt();
+        } catch (Exception ex) {
+            Logger.getLogger(BaixaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
 
 }
