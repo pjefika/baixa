@@ -6,8 +6,11 @@
 package baixa.controller.routes.tt;
 
 import auth.annotation.Admin;
+import auth.annotation.Logado;
+import auth.controller.SingletonPagina;
 import baixa.controller.routes.AbstractCrudController;
 import baixa.controller.routes.BaixaController;
+import baixa.dal.system.StatusPaginaDAO;
 import baixa.dal.tt.BaixaTtDAO;
 import baixa.model.entities.StatusBaixa;
 import baixa.model.entities.tt.BaixaTt;
@@ -32,31 +35,45 @@ public class BaixaTtController extends AbstractCrudController {
     @Inject
     private BaixaTtDAO baixattDAO;
 
+    @Inject
+    private SingletonPagina pagina;
+
+    @Inject
+    private StatusPaginaDAO paginaDAO;
+
+    @Logado
     @Path("/addtt/")
     public void addTT() {
-
+        this.verificaSiteOnline();
     }
 
+    @Logado
     @Path("/adicionar/tt/")
     public void adicionarTT(BaixaTt baixatt) {
-        try {            
-            
+        try {
             Calendar calendarAbertura = Calendar.getInstance();
             baixatt.setDabertura(calendarAbertura);
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-            Date date = sdf.parse(baixatt.getDataFechamento());
-            Calendar calendarFechamento = Calendar.getInstance();
-            calendarFechamento.setTime(date);
-            
-            baixatt.setDfechamento(calendarFechamento);
+            baixatt.setDfechamento(this.transformaCalendar(baixatt.getDataFechamento()));
             baixatt.setStatus(StatusBaixa.ENVIADO);
+            baixatt.setUsuario(this.sessionUsuarioEfika.getUsuario().getLogin());
             this.baixattDAO.cadastrar(baixatt);
             this.result.redirectTo(BaixaController.class).atendimento();
-        } catch (Exception ex) {            
+        } catch (Exception ex) {
             //System.out.println(ex);            
             //result.include("mensagemFalha", "Falha ao cadastrar " + baixa.getInstancia() + "!");
             result.include("mensagemFalha", ex.getMessage());
+        }
+    }
+
+    public Calendar transformaCalendar(String data) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date date = sdf.parse(data);
+            Calendar calendarFechamento = Calendar.getInstance();
+            calendarFechamento.setTime(date);
+            return calendarFechamento;
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -87,14 +104,14 @@ public class BaixaTtController extends AbstractCrudController {
         listarTT();
     }
 
-    
+    @Admin
     @Path("/backoffice/backlisttt/")
     public void backlisttt() {
         this.listarTT();
         this.status();
     }
 
-    
+    @Admin
     @Path("/backoffice/backlisttt/{id}")
     public void backlisttt(Long id) throws Exception {
         BaixaTt b = baixattDAO.buscaPorId1(id);
@@ -108,14 +125,29 @@ public class BaixaTtController extends AbstractCrudController {
 
     public void update2(BaixaTt m) {
 
+        System.out.println(m.getId());
         BaixaTt tratada1 = (BaixaTt) baixattDAO.buscaPorId1(m.getId());
+        //System.out.println(tratada1.getId());
+        Calendar calendar = Calendar.getInstance();
+        tratada1.setDfechamentousr(calendar);
         tratada1.setStatus(m.getStatus());
+        tratada1.setComentario(m.getComentario());
+        tratada1.setUserbackoffice(this.sessionUsuarioEfika.getUsuario().getLogin());
 
         try {
             baixattDAO.editar(tratada1);
+            this.result.redirectTo(BaixaTtController.class).backlisttt();
 //            result.redirectTo(BaixaController.class).b
         } catch (Exception ex) {
-            Logger.getLogger(BaixaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BaixaTtController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void verificaSiteOnline() {
+        try {
+            this.pagina.setAtivo(this.paginaDAO.listaStatusPagina().getAtivo());
+        } catch (Exception e) {
+
         }
     }
 

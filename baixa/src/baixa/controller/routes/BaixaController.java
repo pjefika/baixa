@@ -5,18 +5,13 @@ package baixa.controller.routes;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import auth.annotation.Admin;
+import auth.annotation.Logado;
+import auth.controller.SingletonPagina;
+import baixa.dal.system.StatusPaginaDAO;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
-import baixa.dal.BaixaDAO;
-import baixa.model.entities.BaixaBa;
-import baixa.model.entities.BaixaTt;
-import baixa.model.entities.StatusBaixa;
 
 /**
  *
@@ -24,249 +19,44 @@ import baixa.model.entities.StatusBaixa;
  */
 @Controller
 public class BaixaController extends AbstractCrudController {
-
+    
     @Inject
-    private BaixaDAO baixaDAO;
-
+    private SingletonPagina pagina;
+    
+    @Inject
+    private StatusPaginaDAO paginaDAO;
+    
     public BaixaController() {
     }
 
-    @Path("/baixa/")
-    public void create() {
-
-    }
-
-    @Path("/buscaba/")
-    public void buscaba() {
-
-    }
-
-    @Path("/baixa/addba/")
-    public void addBA() {
-
-    }
-
-    @Path("/index/")
-    public void index() {
-
-    }
-
-    @Path("/baixa/addtt/")
-    public void addTT() {
-
-    }
-
+    @Admin
     @Path("/baixa/backoffice/")
     public void backOffice() {
 
     }
+
+    @Logado
     @Path("/atendimento/")
     public void atendimento() {
-
+        this.verificaSiteOnline();
     }
 
-    }
-
-   
-    @Path("/baixa/backoffice/backlistba/")
-    public void backlistba() {
-        this.listarBA();
-        this.status();
-    }
-
-    @Path("/baixa/backoffice/backlisttt/")
-    public void backlisttt() {
-        this.listarTT();
-        this.status();
-    }
+    @Admin
     @Path("baixa/relaroio/")
-    public void relatorio(){
-        
+    public void relatorio() {
+
     }
 
-    @Path("/baixa/adicionar/ba/")
-    public void adicionarBA(BaixaBa baixaba) {
-        try {
-            //this.result.include("mensagem", "Cadastro Baixa Off Line");
-
-            Calendar calendar = Calendar.getInstance();
-
-            baixaba.setData(calendar);
-
-            baixaba.setStatus(StatusBaixa.ENVIADO);
-
-            this.baixaDAO.cadastrar(baixaba);
-            this.result.redirectTo(BaixaController.class).atendimento();
-            //result.include("mensagem", "Sucesso no cadastro");
-        } catch (Exception ex) {
-            //result.include("mensagemFalha", "Falha ao cadastrar " + baixa.getInstancia() + "!");
-            result.include("mensagemFalha", ex.getMessage());
-        }
+    public void backlisttt() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Path("/baixa/adicionar/tt/")
-    public void adicionarTT(BaixaTt baixatt) {
-        try {
-            //this.result.include("mensagem", "Cadastro Baixa Off Line");
-
-            Calendar calendar = Calendar.getInstance();
-
-            baixatt.setData(calendar);
-
-            baixatt.setStatus(StatusBaixa.ENVIADO);
-
-            this.baixaDAO.cadastrar(baixatt);
-            this.result.redirectTo(BaixaController.class).atendimento();
-            //result.include("mensagem", "Sucesso no cadastro");
-        } catch (Exception ex) {
-            //result.include("mensagemFalha", "Falha ao cadastrar " + baixa.getInstancia() + "!");
-            result.include("mensagemFalha", ex.getMessage());
-        }
-    }
-
-    /**
-     *
-     */
-    public void listarBA() {
-        try {
-            List<BaixaBa> l = this.baixaDAO.listarporstatus();
-            result.include("listastatus", l);
-
+    
+    public void verificaSiteOnline() {
+        try {            
+            this.pagina.setAtivo(this.paginaDAO.listaStatusPagina().getAtivo());            
         } catch (Exception e) {
-
-            List<BaixaBa> l = new ArrayList<>();
-
+            
         }
     }
-
-    public void listarTT() {
-        try {
-            List<BaixaTt> l = this.baixaDAO.listarporstatus1();
-            result.include("listastatus1", l);
-
-        } catch (Exception e) {
-
-            List<BaixaTt> l = new ArrayList<>();
-
-        }
-
-    }
-
-    @Path("mod/status/ba/{baixaBa.id}")
-    public void modificstatusba(BaixaBa bb) {
-        try {
-            this.baixaDAO.editar(bb);
-            this.result.include("mensagem", "Status modificado com sucesso");
-        } catch (Exception e) {
-            this.result.include("mensagemFalha", "erro ao modificar");
-        }
-    }
-
-    public void modificstatustt(BaixaTt bb) {
-        try {
-            this.baixaDAO.editar(bb);
-            this.result.include("mensagem", "Status modificado com sucesso");
-        } catch (Exception e) {
-            this.result.include("mensagemFalha", "erro ao modificar");
-        }
-    }
-
-    public void status() {
-        result.include("todosStatus", StatusBaixa.values());
-    }
-
-    @Path("/baixa/listarBA/")
-    public void listar() {
-        listarBA();
-       
-
-    }
-    public void listartt() {
-       
-        listarTT();
-
-    }
-    
-    
-    
-    
-
-    @Path("baixa/backoffice/backlistba/{id}")
-    public void backlist(Long id) throws Exception {
-        BaixaBa b = baixaDAO.buscaPorId(id);
-        b.setStatus(StatusBaixa.ANALISE);
-        baixaDAO.editar(b);
-        result.include("resultado", b);
-        StatusBaixa[] listaBaixa = StatusBaixa.values();
-        result.include("StatusBaixa", listaBaixa);
-
-    }
-
-    public void update(BaixaBa m) {
-        validation.onErrorForwardTo(this).create();
-        BaixaBa tratada1 = baixaDAO.buscaPorId(m.getId());
-        tratada1.setComentario(m.getComentario());
-        tratada1.setStatus(m.getStatus());
-        try {
-            baixaDAO.editar(tratada1);
-            result.redirectTo(BaixaController.class).backlistba();
-        } catch (Exception ex) {
-            Logger.getLogger(BaixaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-     @Path("baixa/backoffice/backlisttt/{id}")
-    public void backlisttt(Long id) throws Exception {
-        BaixaTt b = baixaDAO.buscaPorId1(id);
-        b.setStatus(StatusBaixa.ANALISE);
-        baixaDAO.editar(b);
-        result.include("resultado", b);
-        StatusBaixa[] listaBaixa = StatusBaixa.values();
-        result.include("StatusBaixa", listaBaixa);
-
-    }
-
-    public void update2(BaixaTt m) {
-
-        validation.onErrorForwardTo(this).create();
-
-        BaixaTt tratada1 = (BaixaTt) baixaDAO.buscaPorId1(m.getId());
-        tratada1.setStatus(m.getStatus());
-
-        try {
-            baixaDAO.editar(tratada1);
-            result.redirectTo(BaixaController.class).backlisttt();
-        } catch (Exception ex) {
-            Logger.getLogger(BaixaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Path("baixa/backoffice/backlisttt/{id}")
-    public void backlisttt(Long id) throws Exception {
-        BaixaTt b = baixaDAO.buscaPorId1(id);
-        b.setStatus(StatusBaixa.ANALISE);
-        baixaDAO.editar(b);
-        result.include("resultado", b);
-        StatusBaixa[] listaBaixa = StatusBaixa.values();
-        result.include("StatusBaixa", listaBaixa);
-
-    }
-
-    public void update2(BaixaTt m) {
-
-        validation.onErrorForwardTo(this).create();
-
-        BaixaTt tratada1 = baixaDAO.buscaPorId1(m.getId());
-        tratada1.setStatus(m.getStatus());
-
-        try {
-            baixaDAO.editar(tratada1);
-            result.redirectTo(BaixaController.class).backlisttt();
-        } catch (Exception ex) {
-            Logger.getLogger(BaixaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-
+  
 }

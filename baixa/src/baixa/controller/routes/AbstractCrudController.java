@@ -1,5 +1,6 @@
 package baixa.controller.routes;
 
+import auth.controller.SessionUsuarioEfika;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Result;
@@ -13,4 +14,6 @@ public abstract class AbstractCrudController {
 	@Inject
 	protected Validator validation;
 	
+        @Inject
+        protected SessionUsuarioEfika sessionUsuarioEfika;
 }

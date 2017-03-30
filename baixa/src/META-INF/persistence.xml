@@ -3,7 +3,6 @@
   <persistence-unit name="baixaPU" transaction-type="JTA">
     <jta-data-source>java:/co_hsqldb</jta-data-source>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>
