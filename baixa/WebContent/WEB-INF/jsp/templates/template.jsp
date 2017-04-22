@@ -32,7 +32,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span> 
+                        <span class="sr-only">Toggle navigation</span>
                     </button>
                     <a class="navbar-brand" href="${linkTo[HomeController].index()}">Back Office - Baixa OffLine</a>
                 </div>
@@ -42,10 +42,10 @@
                             <li><a href="${linkTo[HomeController].index()}">Home</a></li>
                             <li><a href="${linkTo[BaixaController].atendimento()}">Registro Baixa</a></li>
                                 <c:if test="${sessionUsuarioEfika.admin}">
-                                <li class="dropdown">        
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Painel Encerramento 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Painel Encerramento
                                         <span class="caret"></span>
-                                    </a>                            
+                                    </a>
                                     <ul class="dropdown-menu" >
                                         <li class="dropdown-header">Baixa</li>
                                         <li><a href="${linkTo[BaixaBaController].backlistba()}">BA</a></li>
@@ -53,16 +53,17 @@
                                         <li role="separator" class="divider"></li>
                                         <li class="dropdown-header">Relatórios</li>
                                         <li><a href="${linkTo[RelatorioController].create()}"> BA</a></li>
-                              
-                                    </ul>                            
+
+                                    </ul>
                                 </li>
-                                <li><a href="${linkTo[StatusPaginaController].administracao()}">ADM</a></li>
-                                
-                                </c:if>
+                                <li><a href="${linkTo[AdminController].administracao()}">ADM</a></li>
+
+                            </c:if>
 
                         </ul>
                     </c:if>
-                    <ul class="nav navbar-nav navbar-right">
+                    <c:if test="${sessionUsuarioEfika.logado}">
+                        <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>Perfil <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -100,7 +101,7 @@
                                 </ul>
                             </li>
                         </ul>
-
+                    </c:if>
                 </div>
 
             </div>

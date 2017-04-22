@@ -6,7 +6,7 @@
 package baixa.dal.tt;
 
 import baixa.dal.AbstractDAO;
-import baixa.model.entities.tt.BaixaTt;
+import baixa.model.entities.baixa.BaixaTt;
 import baixa.model.entities.StatusBaixa;
 import java.util.ArrayList;
 import java.util.Calendar;

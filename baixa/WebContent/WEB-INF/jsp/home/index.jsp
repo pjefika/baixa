@@ -8,14 +8,17 @@
     <div class="page-header">
         <h1>Início</h1>
     </div>
-    
-    
-    
-    <div class="alert alert-info" role="alert">
-  <strong>${informacao.comentario}</strong>
-</div>
-    
-    
-    
+
+
+    <c:if test="${not empty informacao.comentario}">
+        <div class="alert alert-info" role="alert">
+            <label>${informacao.comentario}</label>
+        </div>
+    </c:if>
+    <c:if test="${empty informacao.comentario}">
+        <div class="alert alert-info" role="alert">
+            <label>Baixa Offline fechada no momento.</label>
+        </div>
+    </c:if>
 
 </div>

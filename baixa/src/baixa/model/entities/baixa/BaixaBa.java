@@ -1,4 +1,4 @@
-package baixa.model.entities.ba;
+package baixa.model.entities.baixa;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

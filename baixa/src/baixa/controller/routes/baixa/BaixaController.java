@@ -1,4 +1,4 @@
-package baixa.controller.routes;
+package baixa.controller.routes.baixa;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,8 +7,10 @@ package baixa.controller.routes;
  */
 import auth.annotation.Admin;
 import auth.annotation.Logado;
-import auth.controller.SingletonPagina;
+import baixa.controller.routes.AbstractCrudController;
+import baixa.controller.routes.HomeController;
 import baixa.dal.system.StatusPaginaDAO;
+import baixa.model.entities.system.StatusPagina;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import javax.inject.Inject;
@@ -19,9 +21,6 @@ import javax.inject.Inject;
  */
 @Controller
 public class BaixaController extends AbstractCrudController {
-
-    @Inject
-    private SingletonPagina pagina;
 
     @Inject
     private StatusPaginaDAO paginaDAO;
@@ -38,14 +37,9 @@ public class BaixaController extends AbstractCrudController {
     @Logado
     @Path("/atendimento/")
     public void atendimento() {
-        this.verificaSiteOnline();
-    }
-
-    public void verificaSiteOnline() {
-        try {
-            this.pagina.setAtivo(this.paginaDAO.listaStatusPagina().getAtivo());
-        } catch (Exception e) {
-
+        StatusPagina p = paginaDAO.obterStatusAtual();
+        if (!p.getAtivo()) {
+            this.result.redirectTo(HomeController.class).index();
         }
     }
 

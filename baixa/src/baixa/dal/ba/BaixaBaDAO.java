@@ -6,7 +6,7 @@
 package baixa.dal.ba;
 
 import baixa.dal.AbstractDAO;
-import baixa.model.entities.ba.BaixaBa;
+import baixa.model.entities.baixa.BaixaBa;
 import baixa.model.entities.StatusBaixa;
 import java.util.ArrayList;
 import java.util.List;

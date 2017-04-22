@@ -6,7 +6,6 @@
 package baixa.controller.routes;
 
 import auth.annotation.Logado;
-import auth.controller.SessionUsuarioEfika;
 import baixa.dal.system.StatusPaginaDAO;
 import baixa.model.entities.system.StatusPagina;
 import br.com.caelum.vraptor.Controller;
@@ -20,27 +19,19 @@ import javax.inject.Inject;
 @Controller
 public class HomeController extends AbstractCrudController {
 
-    public HomeController() {
-    }
     @Inject
     private StatusPaginaDAO paginaDAO;
+
+    public HomeController() {
+    }
 
     @Logado
     @Path("/")
     public void index() {
-        this.verstatuspagina();
+        StatusPagina p = paginaDAO.obterStatusAtual();
+        this.result.include("informacao", p);
     }
 
     public void restrito() {
     }
-
-    public void verstatuspagina() {
-        try {
-            StatusPagina pagina = this.paginaDAO.listaStatusPagina();
-            this.result.include("informacao", pagina);
-        } catch (Exception e) {
-
-        }
-    }
-
 }

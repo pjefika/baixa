@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package baixa.controller.routes.tt;
+package baixa.controller.routes.baixa;
 
 import auth.annotation.Admin;
 import auth.annotation.Logado;
 import auth.controller.SingletonPagina;
 import baixa.controller.routes.AbstractCrudController;
-import baixa.controller.routes.BaixaController;
 import baixa.dal.system.StatusPaginaDAO;
 import baixa.dal.tt.BaixaTtDAO;
 import baixa.model.entities.StatusBaixa;
-import baixa.model.entities.tt.BaixaTt;
+import baixa.model.entities.baixa.BaixaTt;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import java.text.SimpleDateFormat;

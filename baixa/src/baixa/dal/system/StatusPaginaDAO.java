@@ -13,17 +13,25 @@ import javax.persistence.Query;
  *
  * @author G0025381
  */
-public class StatusPaginaDAO extends AbstractDAO  {
+public class StatusPaginaDAO extends AbstractDAO {
 
     public StatusPaginaDAO() {
     }
+
     public StatusPagina listaStatusPagina() {
+        return this.obterStatusAtual();
+    }
+
+    public StatusPagina obterStatusAtual() {
         try {
-            Query q= this.entityManager.createQuery("FROM StatusPagina");
-            return (StatusPagina) q.getSingleResult();
+            Query q = this.entityManager.createQuery("FROM StatusPagina ORDER BY data DESC");
+
+            StatusPagina s = (StatusPagina) q.setMaxResults(1).getSingleResult();
+            return s;
         } catch (Exception e) {
+            e.printStackTrace();
             return new StatusPagina();
         }
     }
-    
+
 }
