@@ -13,7 +13,7 @@
         <h1>Ativação da Página Baixa Off Line</h1>
     </div>
 
-    <h3>Para liberar a página deixe a tecla em <b>Ativada</b>.</h3> 
+    <h3>Para liberar a página deixe a tecla em <b>ON</b>.</h3> 
 
     <div class="row">
         <div class="col-md-3">
@@ -22,10 +22,17 @@
             </label>        
 
         </div >
-        <div class="col-md-6">
+        <div class="col-md-3">
             ${statusdapagina.ativo}
         </div>
 
+
+        <div class="col-md-3">
+            <label>
+                <b>True - On | False - Off</b>  
+            </label>        
+
+        </div >
     </div>
     <div class="row">
         <div class="col-md-3">
@@ -37,6 +44,12 @@
         <div class="col-md-6">
             ${statusdapagina.comentario}
         </div>
+        <div class="col-md-3">
+            <label>
+                <b></b>  
+            </label>        
+
+        </div >
     </div>
 
 
@@ -52,14 +65,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Favor inserir as informações quanto a abertura da Baixa Off Line.</h4>
                 </div>
+
                 <form action="${linkTo[StatusPaginaController].editarpaginastatus}">
                     <div class="modal-body">
                         <textarea class="form-control" name="s.comentario"></textarea>
                         <br>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" data-toggle="toggle" data name="s.ativo" data-onstyle="primary" data-offstyle="danger">
-                            </label>
+                                <input type="checkbox" data-toggle="toggle" data name="s.ativo" data-onstyle="primary" value="1" data-offstyle="danger" value="2">                            </label>
                         </div>
                         <input type="hidden" name="s.id" value="${statusdapagina.id}"/>
                     </div>

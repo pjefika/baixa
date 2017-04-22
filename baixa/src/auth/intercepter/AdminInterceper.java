@@ -39,13 +39,9 @@ public class AdminInterceper {
     @AroundCall
     public void around(SimpleInterceptorStack stack) {
 
-        try {
-            if (session.getUsuario().getNivel() > 7) {
-                stack.next();
-            } else {
-                result.forwardTo(HomeController.class).restrito();
-            }
-        } catch (Exception e) {
+        if (session.getUsuario().getNivel() > 7) {
+            stack.next();
+        } else {
             result.forwardTo(HomeController.class).restrito();
         }
     }

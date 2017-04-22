@@ -19,6 +19,8 @@ public class SessionUsuarioEfika implements Serializable {
 
     public SessionUsuarioEfika() {
         usuario = new Usuario();
+        usuario.setLogin("G0025381");
+        usuario.setNivel(10);
     }
 
     @Inject

@@ -16,7 +16,12 @@
 </div>
 <div class="row">
 	<div class="col-xs-8">
-		<form action="${linkTo[RelatorioController].add}" method="post">
+		<form action="${linkTo[RelatorioController].add()}" method="post">
+                    <select name="r.relato">
+                        <option>BA</option>
+                        <option>TT</option>
+                    </select>
+                        
 
 			<div class="form-group">
 				<div class="row">

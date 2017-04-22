@@ -10,9 +10,9 @@
 
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 
-<link href="${pageContext.request.contextPath}/resources/datepicker/css/jquery.datetimepicker.min.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/datetimepicker/css/jquery.datetimepicker.min.css" rel="stylesheet" />
 
-<script src="${pageContext.request.contextPath}/resources/datepicker/js/jquery.datetimepicker.full.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/datetimepicker/js/jquery.datetimepicker.full.min.js"></script>
 
 
 <div class="container" id="form" >

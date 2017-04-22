@@ -13,11 +13,11 @@
   .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
   .toggle.ios .toggle-handle { border-radius: 20px; }
 </style>
-<input type="checkbox" checked data-toggle="toggle" data-style="ios">
+<input type="checkbox" checked data-toggle="toggle" data-style="ios" value="1">
 <style>
   .toggle.android { border-radius: 0px;}
   .toggle.android .toggle-handle { border-radius: 0px; }
 </style>
-<input type="checkbox" checked data-toggle="toggle" data-style="android" data-onstyle="info">
+<input type="checkbox" checked data-toggle="toggle" data-style="android" data-onstyle="info" value="2">
     
 </div>

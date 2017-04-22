@@ -12,7 +12,7 @@
     <h1>Tratativa de Baixas enviadas - BA</h1>
 </div>
 
-<form action="${linkTo[BaixaBaController].update}" method="post"  style="width: 50%;"> 
+<form action="${linkTo[BaixaBaController].update}" method="post"  style="width: 100%;"> 
     <table class="table table-bordered">
         <thead>
             <tr>

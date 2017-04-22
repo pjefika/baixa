@@ -19,13 +19,13 @@ import javax.inject.Inject;
  */
 @Controller
 public class BaixaController extends AbstractCrudController {
-    
+
     @Inject
     private SingletonPagina pagina;
-    
+
     @Inject
     private StatusPaginaDAO paginaDAO;
-    
+
     public BaixaController() {
     }
 
@@ -42,20 +42,26 @@ public class BaixaController extends AbstractCrudController {
     }
 
     @Admin
-    @Path("baixa/relaroio/")
+    @Path("/baixa/relatorio/")
     public void relatorio() {
+
+    }
+
+    @Admin
+    @Path("/relatorio/relatorioba/")
+    public void relatorioba() {
 
     }
 
     public void backlisttt() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public void verificaSiteOnline() {
-        try {            
-            this.pagina.setAtivo(this.paginaDAO.listaStatusPagina().getAtivo());            
+        try {
+            this.pagina.setAtivo(this.paginaDAO.listaStatusPagina().getAtivo());
         } catch (Exception e) {
-            
+
         }
     }
   

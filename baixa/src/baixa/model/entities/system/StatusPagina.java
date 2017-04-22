@@ -21,6 +21,7 @@ public class StatusPagina {
     @GeneratedValue
     private Long id;
     private Boolean ativo;
+    
     @Lob
     private String comentario;
 
@@ -46,6 +47,7 @@ public class StatusPagina {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+        
     }
 
 }

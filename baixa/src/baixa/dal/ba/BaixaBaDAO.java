@@ -22,6 +22,7 @@ public class BaixaBaDAO extends AbstractDAO {
     public BaixaBaDAO() {
     }
 
+    
     @Transactional
     public List<BaixaBa> listarporstatus() {
         try {

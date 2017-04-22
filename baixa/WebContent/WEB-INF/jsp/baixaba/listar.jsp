@@ -10,36 +10,36 @@
 
 
 
-    <div class="col-md-6" > 
-        <h1>Baixa de BA</h1>
-        <table class="table table-bordered">
-            <thead>
-            <form action="<c:url value='/listastatus/'/>">
-                <tr>
-                    <th>Instancia</th>
-                    <th>Status</th>
-                    <th>Comentário</th>
+<div class="col-md-6" > 
+    <h1>Baixa de BA</h1>
+    <table class="table table-bordered">
+        <thead>
+        <form action="<c:url value='/listastatus/'/>">
+            <tr>
+                <th>Instancia</th>
+                <th>Status</th>
+                <th>Comentário</th>
+               
 
-                </tr>
-                </thead>
-                <tbody>
+            </tr>
+            </thead>
+            <tbody>
 
-                    <c:forEach items="${listastatus}" var="status">
-
-                    <td> ${status.instancia} </td>
-                    <td>${status.status} </td>
-                    <td>${status.comentario} </td>
+                <c:forEach items="${listastatus}" var="status">
+                    <tr>
+                        <td>${status.instancia}</td>
+                        <td>${status.status}</td>
+                        <td>${status.comentario}</td>
+                        
                     </tr>
                 </c:forEach>
-            </form>    
+
             </tbody>
 
-        </table>
-    </div>
-   
+    </table>                
 
+
+    <center>
+        <a href="${linkTo[BaixaController].atendimento()}" class="btn btn-default" role="button">Cancelar</a>
+    </center>
 </div>
-
-<center>
-    <a href="${linkTo[BaixaController].atendimento()}" class="btn btn-default" role="button">Cancelar</a>
-</center>

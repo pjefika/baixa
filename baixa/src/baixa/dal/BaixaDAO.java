@@ -1,16 +1,15 @@
 package baixa.dal;
 
+import auth.annotation.Admin;
+import baixa.model.entities.Relatorio;
 import java.util.List;
 import java.util.ArrayList;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import baixa.model.entities.ba.BaixaBa;
-import baixa.model.entities.tt.BaixaTt;
 import baixa.model.entities.StatusBaixa;
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import baixa.model.entities.tt.BaixaTt;
+import java.util.Calendar;
 
 public class BaixaDAO extends AbstractDAO {
 
@@ -27,8 +26,6 @@ public class BaixaDAO extends AbstractDAO {
         }
     }
 
-    
-
     @Transactional
     public void editar(BaixaBa baixa) throws Exception {
         try {
@@ -37,8 +34,6 @@ public class BaixaDAO extends AbstractDAO {
             throw new Exception();
         }
     }
-    
-    
 
     @Transactional
     public void excluir(BaixaBa baixa) throws Exception {
@@ -62,12 +57,6 @@ public class BaixaDAO extends AbstractDAO {
         }
     }
 
-    
-
-    
-
-    
-
     @Transactional
     public BaixaBa buscaPorId(Long Id) {
         try {
@@ -80,8 +69,6 @@ public class BaixaDAO extends AbstractDAO {
         }
     }
 
-    
-
     @Transactional
     public void cadastrar1(BaixaBa coment) throws Exception {
         try {
@@ -91,5 +78,51 @@ public class BaixaDAO extends AbstractDAO {
             //throw new PersistenciaException("Falha ao cadastrar " + c.getClass().getSimpleName() + ".");
         }
     }
-    
+
+    @Admin
+    @Transactional
+    public List<BaixaBa> relatorioba(Relatorio rba) {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE b.status =:param1 OR b.status =:param2");
+//                    + "AND BETWEEN :param3 AND :param4");
+            query.setParameter("param1", StatusBaixa.ENCERRADO);
+            query.setParameter("param2", StatusBaixa.NEGADO);
+           
+
+//            Calendar cal = Calendar.getInstance();
+//          cal.setTime(rba.getDataInicio().getTime());
+//           cal.add(Calendar.HOUR, 23);
+//            cal.add(Calendar.MINUTE, 59);
+////            cal.add(Calendar.SECOND, 59);
+//            query.setParameter("param3", rba.getDataFinal());
+//            query.setParameter("param4", rba.getDataInicio());
+
+            return query.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Transactional
+    public List<BaixaTt> relatorioTt(Relatorio rtt) {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.status =:param1 OR b.status =:param2");
+            query.setParameter("param1", StatusBaixa.ENCERRADO);
+            query.setParameter("param2", StatusBaixa.NEGADO);
+
+//            Calendar cal = Calendar.getInstance();
+//            cal.setTime(rtt.getDataFinal().getTime());
+//            cal.add(Calendar.HOUR, 23);
+//            cal.add(Calendar.MINUTE, 59);
+//            cal.add(Calendar.SECOND, 59);
+
+//            query.setParameter("param3", rtt.getDataInicio());
+//            query.setParameter("param4", rtt.getDataFinal());
+
+            return query.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
 }

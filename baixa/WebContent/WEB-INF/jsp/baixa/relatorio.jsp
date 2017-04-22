@@ -16,7 +16,7 @@ src="${pageContext.request.contextPath}/resources/datepicker/js/bootstrap-datepi
 </div>
 <div class="row">
     <div class="col-xs-8">
-        <form action="${linkTo[RelatorioController].add}" method="post">
+        <form action="${linkTo[RelatController].add}" method="post">
 
             <div class="form-group">
                 <div class="row">

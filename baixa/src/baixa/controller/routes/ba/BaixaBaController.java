@@ -42,6 +42,11 @@ public class BaixaBaController extends AbstractCrudController {
     public void buscaba() {
 
     }
+    @Logado
+    @Path("/relatorio/")
+    public void relatorioba() {
+
+    }
 
     @Logado
     @Path("/addba/")

@@ -8,7 +8,10 @@ import br.com.caelum.vraptor.validator.Validator;
 
 public abstract class AbstractCrudController {
 	
-	@Inject
+    /**
+     *
+     */
+    @Inject
 	protected Result result;
 
 	@Inject

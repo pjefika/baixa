@@ -7,6 +7,7 @@ package baixa.model.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -75,4 +76,5 @@ public class AbstractEntity implements Serializable {
     public void setDfechamento(Calendar dfechamento) {
         this.dfechamento = dfechamento;
     }
+  
 }

@@ -10,53 +10,30 @@
 <table>
     <thead>
         <tr>
+            <th>Data de Abertura</th>
+            <th>Data de Fechamaento</th>
+            <th>Status</th>
+            <th>Usuario Back Office</th>
+            <th>Usuário</th>
+            <th>Cidade</th>
+            <th>Comentário</th>
             <th>Instancia</th>
             <th>Ordem</th>
-            <th>Cidade</th>
-            <th>Cod Fechamento</th>
-            <th>Data</th>
-            <th>Status</th>
-            <th>Matrícula</th>
+
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${atendimentos}" var="at">
+        <c:forEach items="${relatorio}" var="at">
             <tr class="leline">
-                <td>${at.solucao.motivo.macroMotivo.rede.nome}</td>
-                <td>${at.tipoAtividade}</td>
-                <td>${at.solucao.motivo.macroMotivo.nome}</td>
-                <td>${at.solucao.motivo.nome}</td>
-                <td>${at.solucao.nome}</td>
-                <td>
-                    <c:choose>
-                        <c:when test="${at.solucao.indevido == true}">
-                            Sim
-                        </c:when>
-                        <c:otherwise>
-                            Não
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-                <td>${at.loginOperador}</td>
-                <td>${at.loginGuru}</td>
-                <c:forEach items="${colaboradoresGuru}" var="colG">
-                    <c:if test="${colG.matricula == at.loginOperador}">
-                        <td>${colG.nome}</td>
-                        <td>${colG.supervisor}</td>	
-                    </c:if>
-                </c:forEach>
-                <td>${at.loginRegistro}</td>
-                <td>${at.terminal}</td>
-                <td><fmt:formatDate type="both" dateStyle="short"
-                                timeStyle="short" value="${at.dataRegistro}" /></td>
-                <td>${at.observacao}</td>
-                <c:forEach items="${colaboradores}" var="col">
-                    <c:if test="${col.matricula == at.loginOperador}">
-                        <td>${col.nome}</td>
-                        <td>${col.supervisor}</td>	
-                    </c:if>
-                </c:forEach>
-
+                <td><fmt:formatDate type="both"  dateStyle="short" timeStyle="short" value="${at.dabertura.time}"/></td>
+                <td><fmt:formatDate type="both"  dateStyle="short" timeStyle="short" value="${at.dfechamento.time}"/></td>
+                <td>${at.status}</td>
+                <td>${at.userbackoffice}</td>
+                <td>${at.usuario}</td>
+                <td>${at.cidade}</td>
+                <td>${at.comentario}</td>
+                <td>${at.instancia}</td>
+                <td>${at.ordem}</td>
             </tr>
         </c:forEach>
     </tbody>
