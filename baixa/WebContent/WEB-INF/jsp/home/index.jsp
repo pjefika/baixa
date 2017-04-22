@@ -15,8 +15,8 @@
             <label>${informacao.comentario}</label>
         </div>
     </c:if>
-    <c:if test="${empty informacao.comentario}">
-        <div class="alert alert-info" role="alert">
+    <c:if test="${!not empty informacao.comentario}">
+        <div class="alert alert-danger" role="alert">
             <label>Baixa Offline fechada no momento.</label>
         </div>
     </c:if>

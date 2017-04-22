@@ -25,11 +25,10 @@ public class StatusPaginaDAO extends AbstractDAO {
     public StatusPagina obterStatusAtual() {
         try {
             Query q = this.entityManager.createQuery("FROM StatusPagina ORDER BY data DESC");
-
             StatusPagina s = (StatusPagina) q.setMaxResults(1).getSingleResult();
             return s;
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new StatusPagina();
         }
     }
