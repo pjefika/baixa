@@ -5,9 +5,7 @@ package baixa.model.entities.ba;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-import baixa.model.entities.AbstractEntity;
+import baixa.model.entities.BaixaAbstract;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
@@ -19,16 +17,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "baixa_BaixaBa")
-public class BaixaBa extends AbstractEntity implements Serializable {
-   
+public class BaixaBa extends BaixaAbstract implements Serializable {
+
     private String instancia;
     private String cidade;
     private String ordem;
-     
-   
+
     @Lob
     private String comentario;
-    
+
     public String getInstancia() {
         return instancia;
     }
@@ -52,7 +49,7 @@ public class BaixaBa extends AbstractEntity implements Serializable {
     public void setOrdem(String ordem) {
         this.ordem = ordem;
     }
-    
+
     public String getComentario() {
         return comentario;
     }
@@ -61,5 +58,4 @@ public class BaixaBa extends AbstractEntity implements Serializable {
         this.comentario = comentario;
     }
 
-    
 }

@@ -41,22 +41,6 @@ public class BaixaController extends AbstractCrudController {
         this.verificaSiteOnline();
     }
 
-    @Admin
-    @Path("/baixa/relatorio/")
-    public void relatorio() {
-
-    }
-
-    @Admin
-    @Path("/relatorio/relatorioba/")
-    public void relatorioba() {
-
-    }
-
-    public void backlisttt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void verificaSiteOnline() {
         try {
             this.pagina.setAtivo(this.paginaDAO.listaStatusPagina().getAtivo());
@@ -64,5 +48,5 @@ public class BaixaController extends AbstractCrudController {
 
         }
     }
-  
+
 }

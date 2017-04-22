@@ -2,14 +2,15 @@ package baixa.dal;
 
 import auth.annotation.Admin;
 import baixa.model.entities.Relatorio;
-import java.util.List;
-import java.util.ArrayList;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
-import baixa.model.entities.ba.BaixaBa;
 import baixa.model.entities.StatusBaixa;
+import baixa.model.entities.ba.BaixaBa;
 import baixa.model.entities.tt.BaixaTt;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
+import javax.transaction.Transactional;
 
 public class BaixaDAO extends AbstractDAO {
 
@@ -83,19 +84,17 @@ public class BaixaDAO extends AbstractDAO {
     @Transactional
     public List<BaixaBa> relatorioba(Relatorio rba) {
         try {
-            Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE b.status =:param1 OR b.status =:param2");
-//                    + "AND BETWEEN :param3 AND :param4");
+            Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE (b.status =:param1 OR b.status =:param2) AND b.dabertura BETWEEN :param3 AND :param4");
             query.setParameter("param1", StatusBaixa.ENCERRADO);
             query.setParameter("param2", StatusBaixa.NEGADO);
-           
 
-//            Calendar cal = Calendar.getInstance();
-//          cal.setTime(rba.getDataInicio().getTime());
-//           cal.add(Calendar.HOUR, 23);
-//            cal.add(Calendar.MINUTE, 59);
-////            cal.add(Calendar.SECOND, 59);
-//            query.setParameter("param3", rba.getDataFinal());
-//            query.setParameter("param4", rba.getDataInicio());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(rba.getDataFinal().getTime());
+            cal.add(Calendar.HOUR, 23);
+            cal.add(Calendar.MINUTE, 59);
+//            cal.add(Calendar.SECOND, 59);
+            query.setParameter("param3", rba.getDataInicio().getTime(), TemporalType.DATE);
+            query.setParameter("param4", cal.getTime(), TemporalType.DATE);
 
             return query.getResultList();
         } catch (Exception e) {
@@ -115,10 +114,8 @@ public class BaixaDAO extends AbstractDAO {
 //            cal.add(Calendar.HOUR, 23);
 //            cal.add(Calendar.MINUTE, 59);
 //            cal.add(Calendar.SECOND, 59);
-
 //            query.setParameter("param3", rtt.getDataInicio());
 //            query.setParameter("param4", rtt.getDataFinal());
-
             return query.getResultList();
         } catch (Exception e) {
             return new ArrayList<>();

@@ -5,9 +5,7 @@ package baixa.model.entities.tt;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-import baixa.model.entities.AbstractEntity;
+import baixa.model.entities.BaixaAbstract;
 import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Entity;
@@ -21,21 +19,21 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "baixa_BaixaTT")
-public class BaixaTt extends AbstractEntity implements Serializable {
+public class BaixaTt extends BaixaAbstract implements Serializable {
+
     private String ss;
     private String codfechamento;
     private Calendar dfechamentousr;
     @Lob
     private String comentario;
 
-    
     @Transient
     private String dataFechamento;
-            
-    public BaixaTt(){
-                
+
+    public BaixaTt() {
+
     }
-    
+
     public String getSs() {
         return ss;
     }
@@ -58,7 +56,7 @@ public class BaixaTt extends AbstractEntity implements Serializable {
 
     public void setDataFechamento(String dataFechamento) {
         this.dataFechamento = dataFechamento;
-    } 
+    }
 
     public Calendar getDfechamentousr() {
         return dfechamentousr;
@@ -66,7 +64,8 @@ public class BaixaTt extends AbstractEntity implements Serializable {
 
     public void setDfechamentousr(Calendar dfechamentousr) {
         this.dfechamentousr = dfechamentousr;
-            }
+    }
+
     public String getComentario() {
         return comentario;
     }
