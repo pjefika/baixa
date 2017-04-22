@@ -7,8 +7,8 @@ package baixa.model.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -20,15 +20,15 @@ import javax.persistence.MappedSuperclass;
 public class AbstractEntity implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Calendar dabertura;    
+    private Calendar dabertura;
     private Calendar dfechamento;
     private StatusBaixa status;
     private String usuario;
     private String userbackoffice;
-    
+
     public String getUserbackoffice() {
         return userbackoffice;
     }
@@ -76,5 +76,5 @@ public class AbstractEntity implements Serializable {
     public void setDfechamento(Calendar dfechamento) {
         this.dfechamento = dfechamento;
     }
-  
+
 }
