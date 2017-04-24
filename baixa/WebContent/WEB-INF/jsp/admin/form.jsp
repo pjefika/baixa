@@ -16,16 +16,17 @@
 
     <form action="${linkTo[AdminController].editar}" method="POST">
         <div class="modal-body">
-            <textarea class="form-control" name="s.comentario"></textarea>
+            <textarea required="required" class="form-control" name="s.comentario"></textarea>
             <br>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" data-toggle="toggle" name="s.ativo" data-onstyle="primary" value="1" data-offstyle="danger" value="2">
+                    
                 </label>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
     </form>

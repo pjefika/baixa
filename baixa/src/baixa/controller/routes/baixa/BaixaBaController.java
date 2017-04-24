@@ -9,12 +9,15 @@ import auth.annotation.Admin;
 import auth.annotation.Logado;
 import auth.controller.SingletonPagina;
 import baixa.controller.routes.AbstractCrudController;
+import baixa.controller.routes.HomeController;
 import baixa.dal.ba.BaixaBaDAO;
 import baixa.dal.system.StatusPaginaDAO;
 import baixa.model.entities.StatusBaixa;
 import baixa.model.entities.baixa.BaixaBa;
+import baixa.model.entities.system.StatusPagina;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Result;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -47,12 +50,22 @@ public class BaixaBaController extends AbstractCrudController {
 
     }
 
+//    @Logado
+//    @Path("/addba/")
+//    public void addBA() {
+//        this.verificaSiteOnline();
+//        
+//    }
     @Logado
     @Path("/addba/")
     public void addBA() {
-        this.verificaSiteOnline();
+        StatusPagina p = paginaDAO.obterStatusAtual();
+        if (!p.getAtivo()) {
+            this.result.redirectTo(HomeController.class).index();
+        }
     }
 
+    
     @Admin
     @Path("/backoffice/backlistba/")
     public void backlistba() {
@@ -73,7 +86,9 @@ public class BaixaBaController extends AbstractCrudController {
             baixaba.setStatus(StatusBaixa.ENVIADO);
             baixaba.setUsuario(this.sessionUsuarioEfika.getUsuario().getLogin());
             this.baixabaDAO.cadastrar(baixaba);
-            this.result.redirectTo(BaixaController.class).atendimento();
+            this.result.redirectTo(BaixaBaController.class).addBA();
+            this.result.include("Cadastro realizado com sucesso");
+            
         } catch (Exception ex) {
             //result.include("mensagemFalha", "Falha ao cadastrar " + baixa.getInstancia() + "!");
             result.include("mensagemFalha", ex.getMessage());

@@ -22,7 +22,7 @@
                 <th>Cidade</th>
                 <th>Instancia</th>
                 <th>Ordem</th>
-                
+
             </tr>
         </thead>   
 
@@ -30,16 +30,19 @@
 
         <form action="${linkTo[BaixaBaController].adicionarBA()}">
             <tr>
-                <td> <input type="text" class="form-control" name="baixaba.cidade"></></td>
-                <td><input type="text" class="form-control" name="baixaba.instancia"></></td>
-                <td><input type="text" class="form-control" name="baixaba.ordem"></></td>
-                              
+                <td> <input required="required" type="text" class="form-control" name="baixaba.cidade"></></td>
+                <td><input required="required" type="text" class="form-control" name="baixaba.instancia"></></td>
+                <td><input required="required" type="text" class="form-control" name="baixaba.ordem"></></td>
+
             </tr>
+
+
             </tbody>
     </table>
+
     <center>
-        <button type="submit" class="btn btn-default">Salvar</button>
-        <a href="${linkTo[BaixaController].atendimento()}" class="btn btn-default" role="button">Cancelar</a>
+        <button type="submit" class="btn btn-info">Salvar</button>
+        <a href="${linkTo[BaixaBaController].listar()}" class="btn btn-info" role="button">Consultas</a>
     </center>
 </form>
 

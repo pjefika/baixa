@@ -82,7 +82,7 @@ public class BaixaDAO extends AbstractDAO {
 
     @Admin
     @Transactional
-    public List<BaixaBa> relatorioba(Relatorio rba) {
+    public List<BaixaBa> relatorioBa(Relatorio rba) {
         try {
             Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE (b.status =:param1 OR b.status =:param2) AND b.dabertura BETWEEN :param3 AND :param4");
             query.setParameter("param1", StatusBaixa.ENCERRADO);
@@ -105,21 +105,26 @@ public class BaixaDAO extends AbstractDAO {
     @Transactional
     public List<BaixaTt> relatorioTt(Relatorio rtt) {
         try {
-            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.status =:param1 OR b.status =:param2");
+            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE (b.status =:param1 OR b.status =:param2) AND b.dabertura BETWEEN :param3 AND :param4");
             query.setParameter("param1", StatusBaixa.ENCERRADO);
             query.setParameter("param2", StatusBaixa.NEGADO);
 
-//            Calendar cal = Calendar.getInstance();
-//            cal.setTime(rtt.getDataFinal().getTime());
-//            cal.add(Calendar.HOUR, 23);
-//            cal.add(Calendar.MINUTE, 59);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(rtt.getDataFinal().getTime());
+            cal.add(Calendar.HOUR, 23);
+            cal.add(Calendar.MINUTE, 59);
 //            cal.add(Calendar.SECOND, 59);
-//            query.setParameter("param3", rtt.getDataInicio());
-//            query.setParameter("param4", rtt.getDataFinal());
+            query.setParameter("param3", rtt.getDataInicio().getTime(), TemporalType.DATE);
+            query.setParameter("param4", cal.getTime(), TemporalType.DATE);
+
             return query.getResultList();
         } catch (Exception e) {
             return new ArrayList<>();
         }
+    }
+
+    public Object relatoriott(Relatorio r) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

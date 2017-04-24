@@ -27,10 +27,9 @@ public class RelatorioController extends AbstractCrudController {
     @Admin
     public void add(Relatorio r) throws IOException {
         if (r.getRelato().equalsIgnoreCase("BA")) {
-            
-            result.include("relatorio", dao.relatorioba(r));
+            result.include("relatorioba", dao.relatorioBa(r));
         } else {
-            result.include("relatorio", dao.relatorioTt(r));
+            result.include("relatoriott", dao.relatorioTt(r));
         }
     }
     

@@ -40,5 +40,5 @@
 </div>
 
 <center>
-    <button type="button" onclick="history.back(-1)" class="cancelar">Voltar</button>
+       <a href="${linkTo[BaixaTtController].addTT()}" class="btn btn-info" role="button">Voltar para Cadastro de TT</a>
 </center>

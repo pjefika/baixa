@@ -9,10 +9,12 @@ import auth.annotation.Admin;
 import auth.annotation.Logado;
 import auth.controller.SingletonPagina;
 import baixa.controller.routes.AbstractCrudController;
+import baixa.controller.routes.HomeController;
 import baixa.dal.system.StatusPaginaDAO;
 import baixa.dal.tt.BaixaTtDAO;
 import baixa.model.entities.StatusBaixa;
 import baixa.model.entities.baixa.BaixaTt;
+import baixa.model.entities.system.StatusPagina;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import java.text.SimpleDateFormat;
@@ -40,12 +42,19 @@ public class BaixaTtController extends AbstractCrudController {
     @Inject
     private StatusPaginaDAO paginaDAO;
 
-    @Logado
-    @Path("/addtt/")
+//    @Logado
+//    @Path("/addtt/")
+//    public void addTT() {
+//        this.verificaSiteOnline();
+//            }
+@Logado
+    @Path("/addTT/")
     public void addTT() {
-        this.verificaSiteOnline();
+        StatusPagina p = paginaDAO.obterStatusAtual();
+        if (!p.getAtivo()) {
+            this.result.redirectTo(HomeController.class).index();
+        }
     }
-
     @Logado
     @Path("/adicionar/tt/")
     public void adicionarTT(BaixaTt baixatt) {
@@ -56,7 +65,7 @@ public class BaixaTtController extends AbstractCrudController {
             baixatt.setStatus(StatusBaixa.ENVIADO);
             baixatt.setUsuario(this.sessionUsuarioEfika.getUsuario().getLogin());
             this.baixattDAO.cadastrar(baixatt);
-            this.result.redirectTo(BaixaController.class).atendimento();
+            this.result.redirectTo(BaixaTtController.class).addTT();
         } catch (Exception ex) {
             //System.out.println(ex);            
             //result.include("mensagemFalha", "Falha ao cadastrar " + baixa.getInstancia() + "!");

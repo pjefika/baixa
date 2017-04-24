@@ -32,19 +32,19 @@
         <tbody>  
         <form action="${linkTo[BaixaTtController].adicionarTT()}">
             <tr>
-                <td> <input type="text" class="form-control" name="baixatt.ss"/></td>
+                <td> <input required="required" type="text" class="form-control" name="baixatt.ss"/></td>
 
                 <td>   
-                    <input type="text" id="datafechamento" class="form-control" name="baixatt.dataFechamento">
+                    <input required="required" type="text" id="datafechamento" class="form-control" name="baixatt.dataFechamento">
                 </td>
-                <td> <input type="text" class="form-control" name="baixatt.codfechamento"/></td>
+                <td> <input required="required" type="text" class="form-control" name="baixatt.codfechamento"/></td>
 
                 </tbody>
                 </table>
 
             <center>
-                <button type="submit" class="btn btn-default">Salvar</button>
-                <a href="${linkTo[BaixaController].atendimento()}" class="btn btn-default" role="button">Cancelar</a>
+                <button type="submit" class="btn btn-info">Salvar</button>
+                <a href="${linkTo[BaixaTtController].listartt()}" class="btn btn-info" role="button">Consultas</a>
             </center>
         </form>
 

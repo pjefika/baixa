@@ -40,6 +40,6 @@
 
 
     <center>
-        <a href="${linkTo[BaixaController].atendimento()}" class="btn btn-default" role="button">Cancelar</a>
+        <a href="${linkTo[BaixaBaController].addBA()}" class="btn btn-info" role="button">Voltar para Cadastro de BA</a>
     </center>
 </div>

@@ -34,13 +34,17 @@ public class BaixaController extends AbstractCrudController {
 
     }
 
-    @Logado
-    @Path("/atendimento/")
-    public void atendimento() {
-        StatusPagina p = paginaDAO.obterStatusAtual();
-        if (!p.getAtivo()) {
-            this.result.redirectTo(HomeController.class).index();
-        }
+//    @Logado
+//    @Path("/addba/")
+//    public void atendimento() {
+//        StatusPagina p = paginaDAO.obterStatusAtual();
+//        if (!p.getAtivo()) {
+//            this.result.redirectTo(HomeController.class).index();
+//        }
+//    }
+
+    void addBA() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
