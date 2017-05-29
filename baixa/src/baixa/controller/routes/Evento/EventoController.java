@@ -16,7 +16,6 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.inject.Inject;
 import baixa.controller.routes.AbstractCrudController;
-import baixa.eventos.EventoDao;
 import java.text.ParseException;
 
 /**
@@ -93,6 +92,12 @@ public class EventoController extends AbstractCrudController {
 
         private void setFechamento(Calendar transformaCalendar) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+
+    private static class EventoDao {
+
+        public EventoDao() {
         }
     }
 
