@@ -17,7 +17,6 @@ import baixa.model.entities.baixa.BaixaBa;
 import baixa.model.entities.system.StatusPagina;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Result;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -32,10 +31,10 @@ public class BaixaBaController extends AbstractCrudController {
 
     @Inject
     private BaixaBaDAO baixabaDAO;
-    
+
     @Inject
     private SingletonPagina pagina;
-    
+
     @Inject
     private StatusPaginaDAO paginaDAO;
 
@@ -44,6 +43,7 @@ public class BaixaBaController extends AbstractCrudController {
     public void buscaba() {
 
     }
+
     @Logado
     @Path("/relatorio/")
     public void relatorioba() {
@@ -65,7 +65,6 @@ public class BaixaBaController extends AbstractCrudController {
         }
     }
 
-    
     @Admin
     @Path("/backoffice/backlistba/")
     public void backlistba() {
@@ -88,7 +87,7 @@ public class BaixaBaController extends AbstractCrudController {
             this.baixabaDAO.cadastrar(baixaba);
             this.result.redirectTo(BaixaBaController.class).addBA();
             this.result.include("Cadastro realizado com sucesso");
-            
+
         } catch (Exception ex) {
             //result.include("mensagemFalha", "Falha ao cadastrar " + baixa.getInstancia() + "!");
             result.include("mensagemFalha", ex.getMessage());
@@ -99,6 +98,24 @@ public class BaixaBaController extends AbstractCrudController {
         try {
             List<BaixaBa> l = this.baixabaDAO.listarporstatus();
             result.include("listastatus", l);
+
+        } catch (Exception e) {
+
+            List<BaixaBa> l = new ArrayList<>();
+
+        }
+    }
+    
+    @Logado
+    @Path("/listarporstatusnegada/")
+    public void listarBANegativas() {
+        listarbanegativas();
+    }
+
+    public void listarbanegativas() {
+        try {
+            List<BaixaBa> l = this.baixabaDAO.listarporstatusnegada();
+            result.include("listarporstatusnegada", l);
 
         } catch (Exception e) {
 
@@ -123,6 +140,8 @@ public class BaixaBaController extends AbstractCrudController {
     public void listar() {
         listarBA();
     }
+
+    
 
     @Admin
     @Path("/backoffice/backlistba/{id}")
@@ -151,12 +170,18 @@ public class BaixaBaController extends AbstractCrudController {
 //            Logger.getLogger(BaixaBaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void verificaSiteOnline() {
-        try {            
-            this.pagina.setAtivo(this.paginaDAO.listaStatusPagina().getAtivo());            
+        try {
+            this.pagina.setAtivo(this.paginaDAO.listaStatusPagina().getAtivo());
         } catch (Exception e) {
-            
+
+        }
+    }
+
+    private static class negadas {
+
+        public negadas() {
         }
     }
 }

@@ -8,6 +8,7 @@ package baixa.dal.tt;
 import baixa.dal.AbstractDAO;
 import baixa.model.entities.baixa.BaixaTt;
 import baixa.model.entities.StatusBaixa;
+import baixa.model.entities.baixa.BaixaBa;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -41,6 +42,24 @@ public class BaixaTtDAO extends AbstractDAO {
             return (BaixaTt) query.getSingleResult();
         } catch (Exception e) {
             return null;
+        }
+    }
+    @Transactional
+    public List<BaixaTt> listarporstatusnegadatt() {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.status =:param1 OR b.status =:param2");
+            query.setParameter("param1", StatusBaixa.ENCERRADO);
+            query.setParameter("param2", StatusBaixa.NEGADO);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+    
+    private static class BaixaTtNegada {
+
+        public BaixaTtNegada() {
         }
     }
 }

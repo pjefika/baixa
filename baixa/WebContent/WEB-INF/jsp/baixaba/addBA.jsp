@@ -41,8 +41,7 @@
     </table>
 
     <center>
-        <button type="submit" class="btn btn-info">Salvar</button>
-        <a href="${linkTo[BaixaBaController].listar()}" class="btn btn-info" role="button">Consultas</a>
+        <button type="submit" class="btn btn-success">Salvar</button>
     </center>
 </form>
 

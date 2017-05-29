@@ -6,11 +6,8 @@ package baixa.controller.routes.baixa;
  * and open the template in the editor.
  */
 import auth.annotation.Admin;
-import auth.annotation.Logado;
 import baixa.controller.routes.AbstractCrudController;
-import baixa.controller.routes.HomeController;
 import baixa.dal.system.StatusPaginaDAO;
-import baixa.model.entities.system.StatusPagina;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import javax.inject.Inject;

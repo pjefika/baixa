@@ -50,9 +50,13 @@
                                     <li><a href="${linkTo[BaixaBaController].addBA()}">BA</a></li>
                                     <li><a href="${linkTo[BaixaTtController].addTT()}">TT</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header">Consultas</li>
+                                    <li class="dropdown-header">Consulta Status</li>
                                     <li><a href="${linkTo[BaixaBaController].listar()}">BA</a></li>
                                     <li><a href="${linkTo[BaixaTtController].listartt()}">TT</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-header">Consulta Encerradas e Negadas</li>
+                                    <li><a href="${linkTo[BaixaBaController].listarbanegativas()}">BA</a></li>
+                                    <li><a href="${linkTo[BaixaTtController].listarttnegativas()}">TT</a></li>
 
                                 </ul>
                             </li>
@@ -67,11 +71,26 @@
                                         <li><a href="${linkTo[BaixaTtController].backlisttt()}">TT</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li class="dropdown-header">Relatórios</li>
-                                        <li><a href="${linkTo[RelatorioController].create()}"> BA</a></li>
+                                        <li><a href="${linkTo[RelatorioController].create()}"> Relatórios</a></li>
 
                                     </ul>
                                 </li>
-                                <li><a href="${linkTo[AdminController].administracao()}">ADM</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administração
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" >
+                                        <li class="dropdown-header">Administração</li>
+                                        <li><a href="${linkTo[AdminController].administracao()}">Abertura da Baixa</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li class="dropdown-header">Cadastro de Baixa</li>
+                                        <li><a href="${linkTo[EventoController].addevento()}">Cadastrar Baixa</a></li>
+                                        <li><a href="">Visualizar Baixa</a></li>
+
+
+                                    </ul>
+                                </li>
+
 
                             </c:if>
 

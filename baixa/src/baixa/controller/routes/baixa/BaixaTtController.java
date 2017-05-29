@@ -47,7 +47,7 @@ public class BaixaTtController extends AbstractCrudController {
 //    public void addTT() {
 //        this.verificaSiteOnline();
 //            }
-@Logado
+    @Logado
     @Path("/addTT/")
     public void addTT() {
         StatusPagina p = paginaDAO.obterStatusAtual();
@@ -55,6 +55,7 @@ public class BaixaTtController extends AbstractCrudController {
             this.result.redirectTo(HomeController.class).index();
         }
     }
+
     @Logado
     @Path("/adicionar/tt/")
     public void adicionarTT(BaixaTt baixatt) {
@@ -159,4 +160,27 @@ public class BaixaTtController extends AbstractCrudController {
         }
     }
 
+    @Logado
+    @Path("/listarporstatusnegadatt/")
+    public void listarTTNegativas() {
+        listarttnegativas();
+    }
+
+    public void listarttnegativas() {
+        try {
+            List<BaixaTt> l = this.baixattDAO.listarporstatusnegadatt();
+            result.include("listarporstatusnegadatt", l);
+
+        } catch (Exception e) {
+
+            List<BaixaTt> l = new ArrayList<>();
+
+        }
+    }
+
+    private static class negadas {
+
+        public negadas() {
+        }
+    }
 }

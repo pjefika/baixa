@@ -17,6 +17,7 @@
         <tr>
             <th>Instancia</th>
             <th>Status</th>
+            <th>Tratado por:</th>
             <th>Ação</th>
         </tr>
     </thead>
@@ -25,6 +26,7 @@
             <tr>
                 <td>${status.instancia}</td>
                 <td>${status.status}</td>
+                <td>${status.userbackoffice}</td>
                 <td>
                     <a href="${pageContext.request.contextPath}/backoffice/backlistba/${status.id}" class="btn btn-warning btn-sm"> 
                         <span

@@ -18,7 +18,7 @@
 <div class="container" id="form" >
 
     <div class="page-header">
-        <h1>Cadastro Baixa Off Line TT</h1>
+        <h1>Cadastro Baixa Off Line - TT</h1>
     </div>
     <table class="table table-bordered">
 
@@ -43,8 +43,8 @@
                 </table>
 
             <center>
-                <button type="submit" class="btn btn-info">Salvar</button>
-                <a href="${linkTo[BaixaTtController].listartt()}" class="btn btn-info" role="button">Consultas</a>
+                <button type="submit" class="btn btn-success">Salvar</button>
+
             </center>
         </form>
 
@@ -53,6 +53,7 @@
                 $('#datafechamento').datetimepicker({
                     format: 'Y-m-d H:i:s'
                 });
+
                 $.datetimepicker.setLocale('pt-BR');
             });
         </script>

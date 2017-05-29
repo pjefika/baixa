@@ -17,7 +17,9 @@ public enum StatusBaixa {
     ENVIADO("Enviado"),
     ANALISE("Em Análise"),
     ENCERRADO("Encerrado"),
-    NEGADO("Negado");
+    NEGADO("Negado"),
+    ABERTO("Aberto");
+    
 
     private final String status;
 

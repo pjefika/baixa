@@ -7,16 +7,19 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 
 public abstract class AbstractCrudController {
-	
+
     /**
      *
      */
     @Inject
-	protected Result result;
+    protected Result result;
 
-	@Inject
-	protected Validator validation;
-	
-        @Inject
-        protected SessionUsuarioEfika sessionUsuarioEfika;
+    @Inject
+    protected Validator validation;
+
+    @Inject
+    protected SessionUsuarioEfika sessionUsuarioEfika;
+    
+    @Inject
+    protected SessionUsuarioEfika session;
 }

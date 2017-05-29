@@ -58,6 +58,21 @@ public class BaixaDAO extends AbstractDAO {
         }
     }
 
+   
+    @Transactional
+    public List<BaixaBa> listarporstatusnegada() {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE b.status =:param1 OR b.status =:param2");
+            query.setParameter("param1", StatusBaixa.NEGADO);
+            query.setParameter("param2", StatusBaixa.ENCERRADO);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+    
+
     @Transactional
     public BaixaBa buscaPorId(Long Id) {
         try {
@@ -125,6 +140,12 @@ public class BaixaDAO extends AbstractDAO {
 
     public Object relatoriott(Relatorio r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static class negadas {
+
+        public negadas() {
+        }
     }
 
 }

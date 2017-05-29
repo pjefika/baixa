@@ -11,30 +11,29 @@
 
 
 
-<h1>Consulta Status Baixa - TT</h1>
+<h1>Consulta Encerramento - TT</h1>
 <table class="table table-bordered">
     <thead>
-    <form action="<c:url value='/listastatus1/'/>">
+    <form action="<c:url value='/listastatus/'/>">
         <tr>
-            <th>Ordem</th>
+            <th>Instancia</th>
             <th>Status</th>
             <th>Comentário</th>
+
 
         </tr>
         </thead>
         <tbody>
 
-            <c:forEach items="${listastatus1}" var="status">
+            <c:forEach items="${listarporstatusnegadatt}" var="status">
+                <tr>
+                    <td>${status.ss}</td>
+                    <td>${status.status}</td>
+                    <td>${status.comentario}</td>
 
-            <td> ${status.ss} </td>
-            <td>${status.status} </td>
-            <td>${status.comentario} </td>
-            </tr>
-        </c:forEach>
-    </form>    
-</tbody>
+                </tr>
+            </c:forEach>
 
-</table>
-</div>
+        </tbody>
 
-
+</table>                

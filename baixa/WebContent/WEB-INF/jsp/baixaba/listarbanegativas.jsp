@@ -11,7 +11,7 @@
 
 
 
-    <h1>Consulta Status Baixa - BA</h1>
+    <h1>Consulta Encerramento - BA</h1>
     <table class="table table-bordered">
         <thead>
         <form action="<c:url value='/listastatus/'/>">
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
 
-                <c:forEach items="${listastatus}" var="status">
+                <c:forEach items="${listarporstatusnegada}" var="status">
                     <tr>
                         <td>${status.instancia}</td>
                         <td>${status.status}</td>
@@ -38,5 +38,3 @@
 
     </table>                
 
-
-    

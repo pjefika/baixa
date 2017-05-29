@@ -22,7 +22,6 @@ public class BaixaBaDAO extends AbstractDAO {
     public BaixaBaDAO() {
     }
 
-    
     @Transactional
     public List<BaixaBa> listarporstatus() {
         try {
@@ -45,6 +44,25 @@ public class BaixaBaDAO extends AbstractDAO {
             return (BaixaBa) query.getSingleResult();
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @Transactional
+    public List<BaixaBa> listarporstatusnegada() {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE b.status =:param1 OR b.status =:param2");
+            query.setParameter("param1", StatusBaixa.ENCERRADO);
+            query.setParameter("param2", StatusBaixa.NEGADO);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    private static class BaixaBaNegada {
+
+        public BaixaBaNegada() {
         }
     }
 
