@@ -1,6 +1,7 @@
-package baixa.controller.routes;
+package baixa.controller;
 
 import auth.annotation.Admin;
+import auth.annotation.Logado;
 import baixa.model.entities.Relatorio;
 import java.io.IOException;
 
@@ -25,6 +26,10 @@ public class RelatorioController extends AbstractCrudController {
     }
 
     @Admin
+    public void lista() {
+    }
+
+    @Admin
     public void add(Relatorio r) throws IOException {
         if (r.getRelato().equalsIgnoreCase("BA")) {
             result.include("relatorioba", dao.relatorioBa(r));
@@ -32,5 +37,5 @@ public class RelatorioController extends AbstractCrudController {
             result.include("relatoriott", dao.relatorioTt(r));
         }
     }
-    
+
 }

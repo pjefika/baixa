@@ -2,7 +2,7 @@ package auth.controller;
 
 import auth.dal.webservice.EfikaUsersProxy;
 import auth.dal.webservice.Usuario;
-import baixa.controller.routes.HomeController;
+import baixa.controller.HomeController;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -30,6 +30,9 @@ public class UsuarioController {
 
     public void logar() {
 
+    }
+
+    public void create() {
     }
 
     public void login(Usuario u) {

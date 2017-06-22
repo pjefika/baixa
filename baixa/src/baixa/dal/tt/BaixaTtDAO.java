@@ -8,9 +8,7 @@ package baixa.dal.tt;
 import baixa.dal.AbstractDAO;
 import baixa.model.entities.baixa.BaixaTt;
 import baixa.model.entities.StatusBaixa;
-import baixa.model.entities.baixa.BaixaBa;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -19,47 +17,79 @@ import javax.transaction.Transactional;
  *
  * @author G0025381
  */
-public class BaixaTtDAO extends AbstractDAO {    
-    
-    @Transactional
-    public List<BaixaTt> listarporstatus1() {
-        try {
-            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.status =:param1 OR b.status =:param2");
-            query.setParameter("param1", StatusBaixa.ANALISE);
-            query.setParameter("param2", StatusBaixa.ENVIADO);
+public class BaixaTtDAO extends AbstractDAO {
 
+    public BaixaTtDAO() {
+    }
+
+    @Transactional
+    public List<BaixaTt> listarporstatus1(String login) {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaTt i WHERE i.usuario =:param1 AND (i.status =:param2 OR i.status =:param3)");
+            query.setParameter("param1", login);
+            query.setParameter("param3", StatusBaixa.ANALISE);
+            query.setParameter("param2", StatusBaixa.ENVIADO);
             return query.getResultList();
         } catch (Exception e) {
             return new ArrayList<>();
         }
     }
+///////////////////
+//    Negada
+
     @Transactional
-    public BaixaTt buscaPorId1(Long id){
+    public List<BaixaTt> listarporstatusnegadatt(String login) {
         try {
-            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.id =:param1" );
+            Query query = this.entityManager.createQuery("FROM BaixaTt i WHERE i.usuario =:param1 AND (i.status =:param2 OR i.status =:param3)");
+            query.setParameter("param1", login);
+            query.setParameter("param3", StatusBaixa.NEGADO);
+            query.setParameter("param2", StatusBaixa.ENCERRADO);
+            return query.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Transactional
+    public BaixaTt buscaPorId1(Long id) {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.id =:param1");
             query.setParameter("param1", id);
-                      
+
             return (BaixaTt) query.getSingleResult();
         } catch (Exception e) {
             return null;
         }
     }
-    @Transactional
-    public List<BaixaTt> listarporstatusnegadatt() {
-        try {
-            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.status =:param1 OR b.status =:param2");
-            query.setParameter("param1", StatusBaixa.ENCERRADO);
-            query.setParameter("param2", StatusBaixa.NEGADO);
 
-            return query.getResultList();
-        } catch (Exception e) {
-            return new ArrayList<>();
-        }
-    }
-    
-    private static class BaixaTtNegada {
-
-        public BaixaTtNegada() {
-        }
-    }
+//    @Transactional
+//    public List<BaixaTt> listarporstatusnegadatt() {
+//        try {
+//            Query query = this.entityManager.createQuery("FROM BaixaTt b WHERE b.status =:param1 OR b.status =:param2");
+//            query.setParameter("param1", StatusBaixa.ENCERRADO);
+//            query.setParameter("param2", StatusBaixa.NEGADO);
+//
+//            return query.getResultList();
+//        } catch (Exception e) {
+//            return new ArrayList<>();
+//        }
+//    }
+//
+//    private static class BaixaTtNegada {
+//
+//        public BaixaTtNegada() {
+//        }
+//    }
+//    @Transactional
+//    public List<BaixaTt> listarporstatusnegadatt(String login) {
+//        try {
+//            Query query = this.entityManager.createQuery("FROM BaixaTt i WHERE i.usuario =:param1 AND (i.status =:param2 OR i.status =:param3)");
+//            query.setParameter("param1", login);
+//            query.setParameter("param3", StatusBaixa.ENCERRADO);
+//            query.setParameter("param2", StatusBaixa.NEGADO);
+//            return query.getResultList();
+//        } catch (Exception e) {
+//            return new ArrayList<>();
+//        }
+//    }
 }

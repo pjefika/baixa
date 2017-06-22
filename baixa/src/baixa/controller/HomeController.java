@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package baixa.controller.routes;
+package baixa.controller;
 
 import auth.annotation.Logado;
 import baixa.dal.system.StatusPaginaDAO;

@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package baixa.controller.routes.baixa;
+package baixa.controller.baixa;
 
 import auth.annotation.Admin;
 import auth.annotation.Logado;
 import auth.controller.SingletonPagina;
-import baixa.controller.routes.AbstractCrudController;
-import baixa.controller.routes.HomeController;
+import baixa.controller.AbstractCrudController;
+import baixa.controller.HomeController;
 import baixa.dal.system.StatusPaginaDAO;
 import baixa.dal.tt.BaixaTtDAO;
 import baixa.model.entities.StatusBaixa;
+import baixa.model.entities.baixa.BaixaBa;
 import baixa.model.entities.baixa.BaixaTt;
 import baixa.model.entities.system.StatusPagina;
 import br.com.caelum.vraptor.Controller;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -88,13 +90,35 @@ public class BaixaTtController extends AbstractCrudController {
 
     public void listarTT() {
         try {
-            List<BaixaTt> l = this.baixattDAO.listarporstatus1();
+//            List<BaixaTt> l = this.baixattDAO.listarporstatus1();
+            List<BaixaTt> l = this.baixattDAO.listarporstatus1(session.getUsuario().getLogin());
             result.include("listastatus1", l);
         } catch (Exception e) {
             List<BaixaTt> l = new ArrayList<>();
         }
     }
 
+    //////////////////////////Negadas
+    public void listarTTnegada() {
+        try {
+            List<BaixaTt> l = baixattDAO.listarporstatusnegadatt(session.getUsuario().getLogin());
+//            List<BaixaBa> l = this.baixabaDAO.listarporstatus();
+            result.include("listarporstatusnegadatt", l);
+
+        } catch (Exception e) {
+
+            List<BaixaTt> l = new ArrayList<>();
+
+        }
+    }
+
+    @Logado
+    @Path("/listarTTnegada/")
+    public void listarttnegativas() {
+        listarTTnegada();
+    }
+
+//////////////////////////
     public void modificstatustt(BaixaTt bb) {
         try {
             this.baixattDAO.editar(bb);
@@ -114,7 +138,7 @@ public class BaixaTtController extends AbstractCrudController {
     }
 
     @Admin
-    @Path("/backoffice/backlisttt/")
+    @Path("/backoffice/cadastraevento/")
     public void backlisttt() {
         this.listarTT();
         this.status();
@@ -160,27 +184,22 @@ public class BaixaTtController extends AbstractCrudController {
         }
     }
 
-    @Logado
-    @Path("/listarporstatusnegadatt/")
-    public void listarTTNegativas() {
-        listarttnegativas();
-    }
-
-    public void listarttnegativas() {
-        try {
-            List<BaixaTt> l = this.baixattDAO.listarporstatusnegadatt();
-            result.include("listarporstatusnegadatt", l);
-
-        } catch (Exception e) {
-
-            List<BaixaTt> l = new ArrayList<>();
-
-        }
-    }
-
-    private static class negadas {
-
-        public negadas() {
-        }
-    }
+//    @Logado
+//    @Path("/listarporstatusnegadatt/")
+//       public void listarbanegativas(String login) {
+//        try {
+//            List<BaixaTt> l = this.baixattDAO.listarporstatusnegadatt(login);
+//            result.include("listarporstatusnegada", l);
+//
+//        } catch (Exception e) {
+//
+//            List<BaixaTt> l = new ArrayList<>();
+//
+//        }
+//    }
+//    private static class negadas {
+//
+//        public negadas() {
+//        }
+//    }
 }

@@ -1,4 +1,4 @@
-package baixa.controller.routes;
+package baixa.controller;
 
 import auth.controller.SessionUsuarioEfika;
 import javax.inject.Inject;

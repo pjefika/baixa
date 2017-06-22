@@ -11,30 +11,32 @@
 
 
 
-    <h1>Consulta Encerramento - BA</h1>
-    <table class="table table-bordered">
-        <thead>
-        <form action="<c:url value='/listastatus/'/>">
-            <tr>
-                <th>Instancia</th>
-                <th>Status</th>
-                <th>Comentário</th>
-               
+<h1>Consulta Encerramento - BA</h1>
 
-            </tr>
-            </thead>
-            <tbody>
+      
+<table class="table table-bordered">
+    <thead>
+    <form action="<c:url value='/listastatus/'/>">
+        <tr>
+            <th>Instancia</th>
+            <th>Status</th>
+            <th>Comentário</th>
 
-                <c:forEach items="${listarporstatusnegada}" var="status">
-                    <tr>
-                        <td>${status.instancia}</td>
-                        <td>${status.status}</td>
-                        <td>${status.comentario}</td>
-                        
-                    </tr>
-                </c:forEach>
 
-            </tbody>
+        </tr>
+        </thead>
+        <tbody>
 
-    </table>                
+            <c:forEach items="${listarporstatusnegada}" var="status">
+                <tr>
+                    <td>${status.instancia}</td>
+                    <td>${status.status}</td>
+                    <td>${status.comentario}</td>
+
+                </tr>
+            </c:forEach>
+
+        </tbody>
+
+</table>                
 

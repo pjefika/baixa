@@ -33,5 +33,5 @@
             <label>Comentário:</label> ${statusdapagina.comentario}
         </div>
     </div>
-    <a class="btn btn-primary btn-lg" href="${linkTo[AdminController].form}">Alterar</a>
+    <a class="btn btn-primary btn-lg" href="${linkTo[AdminController].ativarbaixa}">Alterar</a>
 </div>

@@ -1,4 +1,4 @@
-package baixa.controller.routes.baixa;
+package baixa.controller.baixa;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,7 +6,7 @@ package baixa.controller.routes.baixa;
  * and open the template in the editor.
  */
 import auth.annotation.Admin;
-import baixa.controller.routes.AbstractCrudController;
+import baixa.controller.AbstractCrudController;
 import baixa.dal.system.StatusPaginaDAO;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;

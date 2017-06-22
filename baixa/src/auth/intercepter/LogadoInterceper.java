@@ -48,6 +48,7 @@ public class LogadoInterceper {
                 result.forwardTo(UsuarioController.class).logar();
             }
         } catch (NullPointerException e) {
+            e.printStackTrace();
             result.forwardTo(UsuarioController.class).logar();
         }
     }

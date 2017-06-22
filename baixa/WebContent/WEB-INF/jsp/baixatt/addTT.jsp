@@ -27,6 +27,7 @@
                 <th>Código da SS</th>
                 <th>Data e horario do Fechamento</th>
                 <th>Código do Fechamento</th>
+                <th>Associado ao Evento</th>
             </tr>
         </thead>
         <tbody>  
@@ -38,7 +39,13 @@
                     <input required="required" type="text" id="datafechamento" class="form-control" name="baixatt.dataFechamento">
                 </td>
                 <td> <input required="required" type="text" class="form-control" name="baixatt.codfechamento"/></td>
-
+                <td> 
+                    <select id="tipo" class="form-control" name="r.evento">
+                        <option disabled selected>Selecione</option>
+                        <option>BA</option>
+                        <option>TT</option>
+                    </select>
+                </td>
                 </tbody>
                 </table>
 

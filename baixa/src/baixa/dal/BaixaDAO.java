@@ -1,6 +1,7 @@
 package baixa.dal;
 
 import auth.annotation.Admin;
+import auth.annotation.Logado;
 import baixa.model.entities.Relatorio;
 import baixa.model.entities.StatusBaixa;
 import baixa.model.entities.baixa.BaixaBa;
@@ -46,19 +47,20 @@ public class BaixaDAO extends AbstractDAO {
     }
 
     @Transactional
-    public List<BaixaBa> listarporstatus() {
+    public List<BaixaBa> listarporstatus(String login) {
         try {
             Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE b.status =:param1 OR b.status =:param2");
             query.setParameter("param1", StatusBaixa.ANALISE);
             query.setParameter("param2", StatusBaixa.ENVIADO);
+//            query.setParameter("param3", login);
 
             return query.getResultList();
         } catch (Exception e) {
             return new ArrayList<>();
         }
     }
-
-   
+    
+    
     @Transactional
     public List<BaixaBa> listarporstatusnegada() {
         try {
@@ -71,7 +73,6 @@ public class BaixaDAO extends AbstractDAO {
             return new ArrayList<>();
         }
     }
-    
 
     @Transactional
     public BaixaBa buscaPorId(Long Id) {
@@ -95,7 +96,7 @@ public class BaixaDAO extends AbstractDAO {
         }
     }
 
-    @Admin
+    @Logado
     @Transactional
     public List<BaixaBa> relatorioBa(Relatorio rba) {
         try {
@@ -117,6 +118,7 @@ public class BaixaDAO extends AbstractDAO {
         }
     }
 
+    @Logado
     @Transactional
     public List<BaixaTt> relatorioTt(Relatorio rtt) {
         try {

@@ -22,19 +22,48 @@ public class BaixaBaDAO extends AbstractDAO {
     public BaixaBaDAO() {
     }
 
+//    @Transactional
+//    public List<BaixaBa> listarporstatus() {
+//        try {
+//            Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE b.status =:param1 OR b.status =:param2");
+//            query.setParameter("param1", StatusBaixa.ANALISE);
+//            query.setParameter("param2", StatusBaixa.ENVIADO);
+//
+//            return query.getResultList();
+//        } catch (Exception e) {
+//            return new ArrayList<>();
+//        }
+//    }
     @Transactional
-    public List<BaixaBa> listarporstatus() {
+    public List<BaixaBa> listarporstatus(String login) {
         try {
-            Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE b.status =:param1 OR b.status =:param2");
-            query.setParameter("param1", StatusBaixa.ANALISE);
+            Query query = this.entityManager.createQuery("FROM BaixaBa i WHERE i.usuario =:param1 AND (i.status =:param2 OR i.status =:param3)");
+            query.setParameter("param1", login);
+            query.setParameter("param3", StatusBaixa.ANALISE);
             query.setParameter("param2", StatusBaixa.ENVIADO);
-
             return query.getResultList();
         } catch (Exception e) {
             return new ArrayList<>();
         }
     }
-
+///////////////////
+//    Negada
+    
+    @Transactional
+    public List<BaixaBa> listarporstatusnegada(String login) {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaBa i WHERE i.usuario =:param1 AND (i.status =:param2 OR i.status =:param3)");
+            query.setParameter("param1", login);
+            query.setParameter("param3", StatusBaixa.NEGADO);
+            query.setParameter("param2", StatusBaixa.ENCERRADO);
+            return query.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+            
+            
+            
     @Transactional
     public BaixaBa buscaPorId(Long Id) {
         try {
@@ -47,23 +76,40 @@ public class BaixaBaDAO extends AbstractDAO {
         }
     }
 
-    @Transactional
-    public List<BaixaBa> listarporstatusnegada() {
-        try {
-            Query query = this.entityManager.createQuery("FROM BaixaBa b WHERE b.status =:param1 OR b.status =:param2");
-            query.setParameter("param1", StatusBaixa.ENCERRADO);
-            query.setParameter("param2", StatusBaixa.NEGADO);
+//    @Transactional
+//    public List<BaixaBa> listarporstatusnegada(String login) {
+//        try {
+//            Query query = this.entityManager.createQuery("FROM BaixaBa i WHERE i.usuario =:param1 AND (i.status =:param2 OR b.status =:param3)");
+//            query.setParameter("param1", login);
+//            query.setParameter("param3", StatusBaixa.ENCERRADO);
+//            query.setParameter("param2", StatusBaixa.NEGADO);
+//            return query.getResultList();
+//        } catch (Exception e) {
+//            return new ArrayList<>();
+//        }
+//    }
 
+//    private static class BaixaBaNegada {
+//
+//        public BaixaBaNegada() {
+//        }
+//    }
+
+    public List<BaixaBa> listarIdeiasPorLogin(String login) {
+        try {
+            Query query = this.entityManager.createQuery("FROM BaixaBa i WHERE i.usuario =:param1 AND (i.status =:param2 OR i.status =:param3)");
+            query.setParameter("param1", login);
+            query.setParameter("param3", StatusBaixa.ANALISE);
+            query.setParameter("param2", StatusBaixa.ENVIADO);
             return query.getResultList();
         } catch (Exception e) {
             return new ArrayList<>();
         }
     }
 
-    private static class BaixaBaNegada {
-
-        public BaixaBaNegada() {
-        }
+    public List<BaixaBa> listarporstatusnegada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 }

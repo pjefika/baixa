@@ -2,7 +2,7 @@ package auth.intercepter;
 
 import auth.annotation.Admin;
 import auth.controller.SessionUsuarioEfika;
-import baixa.controller.routes.HomeController;
+import baixa.controller.HomeController;
 import br.com.caelum.vraptor.AroundCall;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;

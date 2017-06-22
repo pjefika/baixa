@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package baixa.controller.routes.baixa;
+package baixa.controller.baixa;
 
 import auth.annotation.Admin;
 import auth.annotation.Logado;
 import auth.controller.SingletonPagina;
-import baixa.controller.routes.AbstractCrudController;
-import baixa.controller.routes.HomeController;
+import baixa.controller.AbstractCrudController;
+import baixa.controller.HomeController;
 import baixa.dal.ba.BaixaBaDAO;
 import baixa.dal.system.StatusPaginaDAO;
 import baixa.model.entities.StatusBaixa;
@@ -96,7 +96,8 @@ public class BaixaBaController extends AbstractCrudController {
 
     public void listarBA() {
         try {
-            List<BaixaBa> l = this.baixabaDAO.listarporstatus();
+            List<BaixaBa> l = baixabaDAO.listarporstatus(session.getUsuario().getLogin());
+//            List<BaixaBa> l = this.baixabaDAO.listarporstatus();
             result.include("listastatus", l);
 
         } catch (Exception e) {
@@ -105,16 +106,12 @@ public class BaixaBaController extends AbstractCrudController {
 
         }
     }
-    
-    @Logado
-    @Path("/listarporstatusnegada/")
-    public void listarBANegativas() {
-        listarbanegativas();
-    }
 
-    public void listarbanegativas() {
+    //////////////////////////
+    public void listarBAnegada() {
         try {
-            List<BaixaBa> l = this.baixabaDAO.listarporstatusnegada();
+            List<BaixaBa> l = baixabaDAO.listarporstatusnegada(session.getUsuario().getLogin());
+//            List<BaixaBa> l = this.baixabaDAO.listarporstatus();
             result.include("listarporstatusnegada", l);
 
         } catch (Exception e) {
@@ -124,6 +121,19 @@ public class BaixaBaController extends AbstractCrudController {
         }
     }
 
+    @Logado
+    @Path("/listarBAnegada/")
+    public void listarbanegativas() {
+        listarBAnegada();
+    }
+
+    private static class negadas {
+
+        public negadas() {
+        }
+    }
+
+    /////////
     @Logado
     @Path("mod/status/ba/{baixaBa.id}")
     public void modificstatusba(BaixaBa bb) {
@@ -140,8 +150,6 @@ public class BaixaBaController extends AbstractCrudController {
     public void listar() {
         listarBA();
     }
-
-    
 
     @Admin
     @Path("/backoffice/backlistba/{id}")
@@ -179,9 +187,4 @@ public class BaixaBaController extends AbstractCrudController {
         }
     }
 
-    private static class negadas {
-
-        public negadas() {
-        }
-    }
 }

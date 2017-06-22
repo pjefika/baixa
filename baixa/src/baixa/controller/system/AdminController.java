@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package baixa.controller.routes.system;
+package baixa.controller.system;
 
 import auth.annotation.Admin;
 import auth.controller.SessionUsuarioEfika;
-import baixa.controller.routes.AbstractCrudController;
+import baixa.controller.AbstractCrudController;
 import baixa.dal.system.StatusPaginaDAO;
 import baixa.model.entities.system.StatusPagina;
 import br.com.caelum.vraptor.Controller;
@@ -41,7 +41,7 @@ public class AdminController extends AbstractCrudController {
     }
 
     @Admin
-    public void form() {
+    public void ativarbaixa() {
         result.include("s", paginaDAO.obterStatusAtual());
     }
 
